@@ -22,7 +22,7 @@ function Main() {
         <img src="이미지5의_경로" alt="이미지5" />
         <img src="이미지6의_경로" alt="이미지6" />
       </div>
-      <button>링크 복사</button>
+      <button>링크 복사!</button>
     </>
   );
 }
