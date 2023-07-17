@@ -13,7 +13,7 @@ function ResultsPage() {
       <Link to="/">
         <button>다시하기</button>
       </Link>
-      <button>링크 복사</button>
+      <button>링크 복사!</button>
       <div>▼OTHER LANGUAGES▼</div>
       <div>
         <img src="이미지1의_경로" alt="이미지1" />
