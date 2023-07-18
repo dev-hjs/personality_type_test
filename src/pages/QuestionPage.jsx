@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
-import axios from 'axios';
+import Question from './contents/Question';
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -24,67 +24,71 @@ const CheckboxInput = styled.input`
   margin-right: 10px;
 `;
 
-function QuestionPage() {
+const QuestionPage = () => {
   const navigate = useNavigate();
-  const [currentQuestion, setCurrentQuestion] = useState(0); // 현재 질문 인덱스를 추적하는 상태 변수
-  const [selectedOption, setSelectedOption] = useState(''); // 선택한 옵션을 추적하는 상태 변수
-  const [questions, setQuestions] = useState([]);
+  const [currentQuestion, setCurrentQuestion] = useState(0);
+  const [selectedOption, setSelectedOption] = useState('');
+  const youtubeVideoId = 'DwuJeGYlYyw';
 
-  useEffect(() => {
-    questionData();
-  }, []);
-
-  const questionData = async () => {
-    try {
-      const response = await axios.get('http://localhost:4000/question');
-      setQuestions(response.data); // 수정: response.data.question 대신 response.data를 사용
-      console.log(response.data);
-    } catch (error) {
-      console.error('error :', error);
-    }
-  };
-
-  // 체크박스 선택 시 호출되는 핸들러 함수
   const handleCheckboxChange = (option) => {
     setSelectedOption(option);
   };
 
-  // "다음 질문" 버튼 클릭 시 호출되는 핸들러 함수
   const handleNextQuestion = () => {
     if (selectedOption !== '') {
-      if (currentQuestion < questions.length - 1) {
-        // 마지막 질문이 아닌 경우에만 진행
-        setCurrentQuestion(currentQuestion + 1); // 다음 질문으로 인덱스 업데이트
-        setSelectedOption(''); // 선택한 옵션 초기화
+      const answer = {
+        question: currentQuestionData.question,
+        answer: selectedOption,
+        name: currentQuestionData.answer.find((ans) => ans.text === selectedOption)?.name
+      };
+      saveAnswerToServer(answer);
+
+      if (currentQuestion < Question.length - 1) {
+        setCurrentQuestion(currentQuestion + 1);
+        setSelectedOption('');
       } else {
-        navigate('/result'); // 마지막 질문에서는 "/result" 경로로 이동
+        navigate('/result');
       }
     } else {
-      alert('질문에 답변해주세요오오!!!!!!!!!!.'); // 체크박스를 선택하지 않았을 때 알림 띄우기
+      alert('질문에 답변해주세요!');
     }
   };
 
-  const currentQuestionData = questions[currentQuestion]; // 현재 질문의 데이터 가져오기
+  const handlePreviousQuestion = () => {
+    if (currentQuestion > 0) {
+      setCurrentQuestion(currentQuestion - 1);
+      setSelectedOption('');
+    } else {
+      alert('첫번째 질문입니다!');
+    }
+  };
+
+  const currentQuestionData = Question[currentQuestion];
+
+  const iframeRef = useRef(null);
+
+  const saveAnswerToServer = (answer) => {
+    fetch('http://localhost:4000/questions', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(answer)
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log('Answer saved to server:', data);
+      })
+      .catch((error) => {
+        console.error('Error saving answer to server:', error);
+      });
+  };
 
   return (
     <>
       <div>QuestionPage</div>
-      {/* 현재 질문 표시 */}
-      {/* <span>{currentQuestionData.question}</span> */}
-      <span>{currentQuestionData && currentQuestionData.question}</span>
-      {currentQuestionData &&
-        currentQuestionData.answer.map((ans, ansIndex) => (
-          <QuestionBox key={ansIndex}>
-            <CheckboxInput
-              type="checkbox"
-              checked={selectedOption === ans.text}
-              onChange={() => handleCheckboxChange(ans.text)}
-              id={`question${currentQuestion + 1}`}
-            />
-            <span>{ans.text}</span>
-          </QuestionBox>
-        ))}
-      {/* <QuestionContainer>
+      <span>{currentQuestionData.question}</span>
+      <QuestionContainer>
         {currentQuestionData.answer.map((ans, ansIndex) => (
           <QuestionBox key={ansIndex}>
             <CheckboxInput
@@ -96,13 +100,14 @@ function QuestionPage() {
             <span>{ans.text}</span>
           </QuestionBox>
         ))}
-      </QuestionContainer> */}
-      <button onClick={handleNextQuestion}>다음 질문</button> {/* "다음 질문" 버튼 */}
+      </QuestionContainer>
+      <button onClick={handlePreviousQuestion}>이전 질문</button>
+      <button onClick={handleNextQuestion}>다음 질문</button>
       <Link to="/result">
-        <button>결과 보러 가기</button> {/* "결과 보러 가기" 버튼 */}
+        <button>결과 보러 가기</button>
       </Link>
     </>
   );
-}
+};
 
 export default QuestionPage;
