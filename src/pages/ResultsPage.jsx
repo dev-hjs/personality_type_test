@@ -1,30 +1,62 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 
 function ResultsPage() {
   return (
     <>
-      <div>🐟사조참치🐟</div>
-      <div>X</div>
-      <div>캐릭터로 보는 성격 테스트</div>
-      <div>결과는??</div>
-      <div>이미지 공간</div>
-      <div>캐릭터로 보는 나의 성격은?</div>
-      <Link to="/">
-        <button>다시하기</button>
-      </Link>
-      <button>링크 복사!</button>
-      <div>▼OTHER LANGUAGES▼</div>
-      <div>
-        <img src="이미지1의_경로" alt="이미지1" />
-        <img src="이미지2의_경로" alt="이미지2" />
-        <img src="이미지3의_경로" alt="이미지3" />
-        <img src="이미지4의_경로" alt="이미지4" />
-        <img src="이미지5의_경로" alt="이미지5" />
-        <img src="이미지6의_경로" alt="이미지6" />
-      </div>
+      <StResultsHeader>
+        <div>🐟사조참치🐟</div>
+        <div>X</div>
+        <div>캐릭터로 보는 성격 테스트</div>
+        <div>결과는??</div>
+      </StResultsHeader>
+      <STresultsImg src="FS4lWL7VIAETIwm.jpg" />
+      <br />
+      <StResultsText>무엇을 선택 하셨네요! 당신과 닮은 캐릭터는!</StResultsText>
+      <StResultsButton1>
+        <Link to="/">
+          <img src="ReStart.png" />
+        </Link>
+        <img src="LinkCopy.png" />
+      </StResultsButton1>
+      <br />
+      <StResultsText>▼OTHER LANGUAGES▼</StResultsText>
+      <StFlagimg>
+        <img src="USflag.png" alt="이미지1" />
+        <img src="CAflag.png" alt="이미지2" />
+        <img src="JPflag.png" alt="이미지3" />
+      </StFlagimg>
     </>
   );
 }
 
 export default ResultsPage;
+
+const STresultsImg = styled.img`
+  width: 40%;
+  height: 40%;
+  margin: auto;
+  display: block;
+`;
+const StResultsText = styled.div`
+  text-align: center;
+`;
+const StResultsButton1 = styled.button`
+  margin: auto;
+  display: block;
+  background-color: #fff;
+  border: #fff;
+`;
+const StResultsHeader = styled.div`
+  text-align: center;
+  font-size: 20px;
+  margin: 20px;
+`;
+const StFlagimg = styled.div`
+  display: block;
+  margin: auto;
+  text-align: center;
+  couser: pointer;
+  width: 40%;
+`;
