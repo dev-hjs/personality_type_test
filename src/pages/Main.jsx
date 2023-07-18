@@ -1,21 +1,7 @@
-import React, { useEffect, useRef } from 'react';
+import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 
 function Main() {
-  const youtubeVideoId = 'DwuJeGYlYyw'; // 재생할 YouTube 비디오의 ID를 여기에 입력하세요
-  const iframeRef = useRef(null);
-
-  useEffect(() => {
-    const playVideo = () => {
-      if (iframeRef.current) {
-        const iframe = iframeRef.current;
-        iframe.src = `https://www.youtube.com/embed/${youtubeVideoId}?autoplay=1&mute=0`;
-      }
-    };
-
-    playVideo();
-  }, [youtubeVideoId]);
-
   return (
     <>
       <div>Main</div>
@@ -37,18 +23,6 @@ function Main() {
         <img src="이미지6의_경로" alt="이미지6" />
       </div>
       <button>링크 복사</button>
-      <div>
-        <iframe
-          ref={iframeRef}
-          title="YouTube Video"
-          width="1"
-          height="1"
-          src={`https://www.youtube.com/embed/${youtubeVideoId}`}
-          frameBorder="0"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-        ></iframe>
-      </div>
     </>
   );
 }
