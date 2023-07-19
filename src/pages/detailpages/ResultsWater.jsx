@@ -30,10 +30,21 @@ function ResultsPage() {
         <STresultsImg src="water.png" />
         <br />
         <StResultsText>
-          엠버이군요!
+          웨이드 이군요!
           <br />
           당신과 닮은 캐릭터가 궁금하시다구요?!
           <br />
+          <div>
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="640"
+              height="360"
+              src="https://www.youtube.com/embed/BOqFRHCrN-k"
+              frameborder="0"
+              style={{ margin: '20px' }}
+            ></iframe>
+          </div>
         </StResultsText>
         <br />
       </div>

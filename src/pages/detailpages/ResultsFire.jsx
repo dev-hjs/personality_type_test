@@ -3,6 +3,7 @@ import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
+import YouTube from 'react-youtube';
 
 function ResultsPage() {
   const handleLinkCopy = async (text) => {
@@ -27,13 +28,24 @@ function ResultsPage() {
         <div>결과는??</div>
       </StResultsHeader>
       <div>
-        <STresultsImg src="water.png" />
+        <STresultsImg src="fire.png" />
         <br />
         <StResultsText>
-          엠버이군요!
+          엠버 이군요!
           <br />
           당신과 닮은 캐릭터가 궁금하시다구요?!
           <br />
+          <div>
+            <iframe
+              id="ytplayer"
+              type="text/html"
+              width="640"
+              height="360"
+              src="https://www.youtube.com/embed/BOqFRHCrN-k"
+              frameborder="0"
+              style={{ margin: '20px' }}
+            ></iframe>
+          </div>
         </StResultsText>
         <br />
       </div>
