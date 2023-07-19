@@ -8,7 +8,7 @@ function Main() {
       navigator.clipboard.writeText(text);
       alert('링크 복사 완료!');
     } catch (error) {
-      alert('다시 시도해주세요.');
+      alert('다시 시도해주세요~');
     }
   };
   return (
