@@ -24,7 +24,7 @@ function ResultsPage() {
         <div>🐟사조참치🐟</div>
         <div>X</div>
         <div>엘리멘탈 캐릭터로 보는 성격 테스트</div>
-        <div>결과는??</div>
+        <div>결과는???</div>
       </StResultsHeader>
       <div>
         <STresultsImg src="soil.png" />

@@ -1,9 +1,7 @@
 {
-  "questions": [
+  "data": [
     {
-      "question": "Q1 고등학생인 당신! 야자를 빼고 싶은데 선생님이 강하게 안된다고 한다.",
-      "answer": "그럼 어쩔 수 없죠 😭",
-      "name": ["물"],
+      "shortId": "Y-h9fXlsY",
       "id": 1
     }
   ]
