@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import axios from 'axios';
@@ -37,6 +37,9 @@ function QuestionPage() {
   const navigate = useNavigate();
   const isLastQuestion = currentQuestionIndex === data.length - 1;
   const [showResultButton, setShowResultButton] = useState(false);
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const shortId = searchParams.get('shortId');
 
   // "additionalData"에서 가장 많은 값을 찾는 함수
   const findMostFrequentAdditionalData = async () => {
@@ -152,6 +155,7 @@ function QuestionPage() {
       const additionalData = data[currentQuestionIndex]._rawData[2].split('\n')[selectedCheckboxIndex];
       console.log(selectedAnswer);
       console.log(additionalData);
+      console.log(shortId);
 
       // 데이터를 JSON 서버에 저장
       try {
@@ -161,7 +165,7 @@ function QuestionPage() {
           headers: {
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ selectedAnswer, additionalData })
+          body: JSON.stringify({ selectedAnswer, additionalData, shortId })
         });
 
         if (response.ok) {
