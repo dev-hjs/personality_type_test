@@ -22,6 +22,7 @@ function App() {
         <Route path="/result_soil" element={<ResultsSoil />} />
         <Route path="/result_water" element={<ResultsWater />} />
         <Route path="/result_wind" element={<ResultsWind />} />
+        <Route path="/result" element={<ResultsPage />} />
       </Route>
     </Routes>
   );
