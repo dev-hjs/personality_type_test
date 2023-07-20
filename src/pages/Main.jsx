@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import shortid from 'shortid';
+import styled from 'styled-components';
 
 function Main() {
   const [shortId, setShortId] = useState(null);
@@ -48,16 +49,46 @@ function Main() {
 
   return (
     <>
-      <div>엘리멘탈 캐릭터로 보는 나의 성격은?</div>
-      <div>character personality test</div>
-      <div>캐릭터로 보는 나의 성격은?</div>
-      <Link to={`/quest?shortId=${shortId}`}>
-        <button onClick={sendDataToServer}>테스트하러 가기</button>
-      </Link>
-      <div>▼OTHER LANGUAGES▼</div>
-      <button onClick={() => handleCopyClipBoard('http://localhost:3000/')}>링크 복사</button>
+      <VideoBackground>
+        <Video autoPlay loop muted>
+          <source src="/Steal The Show From Elemental_1080p.mp4" type="video/mp4" />
+        </Video>
+      </VideoBackground>
+      <ContentContainer>
+        <div>엘리멘탈 캐릭터로 보는 나의 성격은?</div>
+        <div>character personality test</div>
+        <div>캐릭터로 보는 나의 성격은?</div>
+        <Link to={`/quest?shortId=${shortId}`}>
+          <button onClick={sendDataToServer}>테스트하러 가기</button>
+        </Link>
+        <div>▼OTHER LANGUAGES▼</div>
+        <button onClick={() => handleCopyClipBoard('http://localhost:3000/')}>링크 복사</button>
+      </ContentContainer>
     </>
   );
 }
 
 export default Main;
+
+const VideoBackground = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+`;
+
+const Video = styled.video`
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+`;
+
+const ContentContainer = styled.div`
+  position: relative;
+  z-index: 1;
+  padding: 20px;
+  color: white;
+  text-align: center;
+`;
