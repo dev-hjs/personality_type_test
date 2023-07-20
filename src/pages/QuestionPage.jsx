@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
+import axios from 'axios';
 const credential = require('../libs/typetest1-0282f9b10c39.json');
 
 // Google 스프레드시트를 가져오는 함수
@@ -38,24 +39,90 @@ function QuestionPage() {
   const [showResultButton, setShowResultButton] = useState(false);
 
   // "additionalData"에서 가장 많은 값을 찾는 함수
-  const findMostFrequentAdditionalData = () => {
-    const additionalDataArray = data.map((row) => row._rawData[2].split(','));
-    console.log(additionalDataArray);
-    const flattenedAdditionalData = additionalDataArray.flat();
-    const additionalDataCounts = flattenedAdditionalData.reduce((acc, val) => {
-      acc[val] = (acc[val] || 0) + 1;
-      return acc;
-    }, {});
-    const mostFrequentAdditionalData = Object.keys(additionalDataCounts).reduce((a, b) =>
-      additionalDataCounts[a] > additionalDataCounts[b] ? a : b
-    );
-    return mostFrequentAdditionalData;
+  const findMostFrequentAdditionalData = async () => {
+    // db.json에 입력된 값 전체를 가져와!
+    const dbResult = await axios.get('http://localhost:4000/data');
+
+    const filteredData = dbResult.data.map((item) => {
+      return item.additionalData;
+    });
+
+    let 물count = 0;
+    let 불count = 0;
+    let 흙count = 0;
+    let 바람count = 0;
+
+    for (let i = 0; i < filteredData.length; i++) {
+      const splitData = filteredData[i].split(', ');
+      console.log(splitData);
+      if (splitData.length > 1) {
+        for (const data of splitData) {
+          switch (data) {
+            case '물':
+              물count++;
+              break;
+            case '불':
+              불count++;
+              break;
+            case '흙':
+              흙count++;
+              break;
+            case '바람':
+              바람count++;
+              break;
+            default:
+              break;
+          }
+        }
+      } else {
+        switch (filteredData[i]) {
+          case '물':
+            물count++;
+            break;
+          case '불':
+            불count++;
+            break;
+          case '흙':
+            흙count++;
+            break;
+          case '바람':
+            바람count++;
+            break;
+          default:
+            break;
+        }
+      }
+    }
+    console.log(물count);
+    console.log(불count);
+    console.log(흙count);
+    console.log(바람count);
+
+    let mostFrequentData = '물';
+    let maxCount = 물count;
+
+    if (불count > maxCount) {
+      mostFrequentData = '불';
+      maxCount = 불count;
+    }
+    if (흙count > maxCount) {
+      mostFrequentData = '흙';
+      maxCount = 불count;
+    }
+    if (바람count > maxCount) {
+      mostFrequentData = '바람';
+      maxCount = 불count;
+    }
+
+    return mostFrequentData;
   };
 
-  const handleShowResult = () => {
+  const handleShowResult = async () => {
     // "additionalData"에서 가장 많은 값을 찾고 결과 페이지로 이동
-    const mostFrequentAdditionalData = findMostFrequentAdditionalData();
-    switch (mostFrequentAdditionalData) {
+
+    const splitData = await findMostFrequentAdditionalData();
+    console.log(splitData);
+    switch (splitData) {
       case '불':
         navigate('/result_fire'); // '/result_fire'는 "불"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
         break;
