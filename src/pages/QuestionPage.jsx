@@ -46,9 +46,11 @@ function QuestionPage() {
     // db.json에 입력된 값 전체를 가져와!
     const dbResult = await axios.get('http://localhost:4000/data');
 
-    const filteredData = dbResult.data.map((item) => {
-      return item.additionalData;
-    });
+    const filteredData = dbResult.data
+      .filter((result) => result.shortId === shortId && result.additionalData)
+      .map((item) => {
+        return item.additionalData;
+      });
 
     let 물count = 0;
     let 불count = 0;
@@ -188,6 +190,7 @@ function QuestionPage() {
   };
 
   const handlePrevQuestion = () => {
+    //가장 최근에 들어온 데이터중 shortid가 지금유저인 경우 삭제
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
     }
