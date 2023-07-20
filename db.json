@@ -1,3 +1,54 @@
 {
-  "data": []
+  "data": [
+    {
+      "selectedAnswer": "그럼 어쩔 수 없죠 😭",
+      "additionalData": "물",
+      "id": 1
+    },
+    {
+      "selectedAnswer": "집에서 영화,드라마를 본다 📺",
+      "additionalData": "물",
+      "id": 2
+    },
+    {
+      "selectedAnswer": "맨날 몰이 당하는 친구 😩",
+      "additionalData": "물",
+      "id": 3
+    },
+    {
+      "selectedAnswer": "오늘은 그만 하고 내일 들을게! 🕐",
+      "additionalData": "물, 바람",
+      "id": 4
+    },
+    {
+      "selectedAnswer": "뭐 때문에 부르신거지? 🤷‍♀️",
+      "additionalData": "불",
+      "id": 5
+    },
+    {
+      "selectedAnswer": "스터디 윗미 📝",
+      "additionalData": "물",
+      "id": 6
+    },
+    {
+      "selectedAnswer": "방송이니까 웃으며 대답한다 😊",
+      "additionalData": "물",
+      "id": 7
+    },
+    {
+      "selectedAnswer": "말 걸까 고민하다 결국 안 걸었지만 집에서 폭풍 후회 😭",
+      "additionalData": "물",
+      "id": 8
+    },
+    {
+      "selectedAnswer": "나는 얼어 죽어도 아이스 아메리카노 ❄️",
+      "additionalData": "물",
+      "id": 9
+    },
+    {
+      "selectedAnswer": "술은 NO! 🍦",
+      "additionalData": "흙",
+      "id": 10
+    }
+  ]
 }
