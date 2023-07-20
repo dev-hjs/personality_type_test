@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, Outlet, useNavigate } from 'react-router-dom';
+import React, { useEffect, useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 const credential = require('../libs/typetest1-0282f9b10c39.json');
@@ -34,10 +34,45 @@ function QuestionPage() {
   const [selectedCheckboxIndex, setSelectedCheckboxIndex] = useState(-1);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const navigate = useNavigate();
+  const isLastQuestion = currentQuestionIndex === data.length - 1;
+  const [showResultButton, setShowResultButton] = useState(false);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // "additionalData"에서 가장 많은 값을 찾는 함수
+  const findMostFrequentAdditionalData = () => {
+    const additionalDataArray = data.map((row) => row._rawData[2].split(','));
+    console.log(additionalDataArray);
+    const flattenedAdditionalData = additionalDataArray.flat();
+    const additionalDataCounts = flattenedAdditionalData.reduce((acc, val) => {
+      acc[val] = (acc[val] || 0) + 1;
+      return acc;
+    }, {});
+    const mostFrequentAdditionalData = Object.keys(additionalDataCounts).reduce((a, b) =>
+      additionalDataCounts[a] > additionalDataCounts[b] ? a : b
+    );
+    return mostFrequentAdditionalData;
+  };
+
+  const handleShowResult = () => {
+    // "additionalData"에서 가장 많은 값을 찾고 결과 페이지로 이동
+    const mostFrequentAdditionalData = findMostFrequentAdditionalData();
+    switch (mostFrequentAdditionalData) {
+      case '불':
+        navigate('/result_fire'); // '/result_fire'는 "불"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        break;
+      case '물':
+        navigate('/result_water'); // '/result_water'는 "물"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        break;
+      case '흙':
+        navigate('/result_soil'); // '/result_soil'는 "흙"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        break;
+      case '바람':
+        navigate('/result_wind'); // '/result_wind'는 "바람"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        break;
+      default:
+        navigate('/result'); // 일반적인 결과 페이지의 경로입니다. 가장 많은 요소가 불, 물, 흙, 바람이 아닐 경우 이동할 경로를 정해주세요.
+        break;
+    }
+  };
 
   const handleAnswerSelection = (answerIndex) => {
     setSelectedCheckboxIndex(answerIndex);
@@ -71,9 +106,13 @@ function QuestionPage() {
         console.error('오류 발생:', error);
       }
 
-      // 다음 질문으로 이동
-      setSelectedCheckboxIndex(-1);
-      setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      // 마지막 질문이라면 결과 보러가기 버튼을 보여주도록 설정
+      if (isLastQuestion) {
+        setShowResultButton(true);
+      } else {
+        setSelectedCheckboxIndex(-1);
+        setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
+      }
     }
   };
 
@@ -101,7 +140,6 @@ function QuestionPage() {
                     onChange={() => handleAnswerSelection(answerIndex)}
                   />
                   <span>{`${answerIndex + 1}: ${answer}`}</span>
-                  {/* <span>{row._rawData[2].split('\n')[answerIndex]}</span> */}
                 </QuestionBox>
               ))}
             </QuestionContainer>
@@ -113,9 +151,15 @@ function QuestionPage() {
             이전
           </PrevButton>
         )}
-        <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
-          다음
-        </NextButton>
+        {showResultButton ? (
+          <NextButton onClick={handleShowResult} disabled={selectedCheckboxIndex === -1}>
+            결과 보러가기
+          </NextButton>
+        ) : (
+          <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
+            다음
+          </NextButton>
+        )}
       </ButtonContainer>
     </>
   );
