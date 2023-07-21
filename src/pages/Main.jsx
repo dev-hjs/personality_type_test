@@ -95,7 +95,7 @@ function Main() {
         <div> 방문자 수 : {visitCount} </div>
 
         <div>▼OTHER LANGUAGES▼</div>
-        <button onClick={() => handleCopyClipBoard('http://localhost:3000/')}>링크 복사</button>
+        <img src="LinkCopy.png" alt="LinkCopy" onClick={() => handleCopyClipBoard('http://localhost:3000/')} />
       </ContentContainer>
     </>
   );
@@ -119,9 +119,17 @@ const Video = styled.video`
 `;
 
 const ContentContainer = styled.div`
-  position: relative;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   z-index: 1;
   padding: 20px;
   color: white;
   text-align: center;
+  background: black;
+  background-color: rgba(0, 0, 0, 0.4);
+  border: 2px solid;
+  border-radius: 10px;
+  width: 300px;
 `;
