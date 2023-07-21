@@ -238,7 +238,7 @@ function QuestionPage() {
           </NextButton>
         ) : (
           <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
-            다음
+            다음!
           </NextButton>
         )}
       </ButtonContainer>
