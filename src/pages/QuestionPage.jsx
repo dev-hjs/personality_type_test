@@ -3,6 +3,10 @@ import { Link, useNavigate, useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import axios from 'axios';
+import { useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { __addSurvey } from '../redux/modules/survey';
+
 const credential = require('../libs/typetest1-0282f9b10c39.json');
 
 // Google 스프레드시트를 가져오는 함수
@@ -40,11 +44,18 @@ function QuestionPage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shortId = searchParams.get('shortId');
+  // const survey = useSelector((state) => state.survey.survey);
+  const survey = useSelector(function (state) {
+    return state.survey.survey;
+  });
+  console.log('survey', survey);
+
+  const dispatch = useDispatch();
 
   // "additionalData"에서 가장 많은 값을 찾는 함수
   const findMostFrequentAdditionalData = async () => {
     // db.json에 입력된 값 전체를 가져와!
-    const dbResult = await axios.get('http://localhost:4000/data');
+    const dbResult = await axios.get(`${process.env.REACT_APP_SERVER_URL}/data`);
 
     const filteredData = dbResult.data
       .filter((result) => result.shortId === shortId && result.additionalData)
@@ -161,20 +172,45 @@ function QuestionPage() {
 
       // 데이터를 JSON 서버에 저장
       try {
-        const response = await fetch('http://localhost:4000/data', {
-          // 엔드포인트 변경
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ selectedAnswer, additionalData, shortId })
-        });
+        // const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/data`, {
+        //   // 엔드포인트 변경
+        //   method: 'POST',
+        //   headers: {
+        //     'Content-Type': 'application/json'
+        //   },
+        //   body: JSON.stringify({ selectedAnswer, additionalData, shortId })
+        // });
 
-        if (response.ok) {
-          console.log('데이터가 성공적으로 저장되었습니다.');
-        } else {
-          console.log('데이터 저장에 실패하였습니다.');
-        }
+        // axios -> redux로 변경
+        // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/data`, {
+        //   selectedAnswer,
+        //   additionalData,
+        //   shortId
+        // });
+        // dispatch({
+        //   type: '',
+        //   payload: '',
+        // });
+
+        // 직접 action 객체 만드는게 아니라, action creator를 사용
+        // __addSurvey() = {
+        //   type: '',
+        //   payload: '',
+        // }
+        dispatch(
+          __addSurvey({
+            selectedAnswer,
+            additionalData,
+            shortId
+          })
+        );
+
+        // if (response.ok) {
+        // if (response.status === 201) {
+        //   console.log('데이터가 성공적으로 저장되었습니다.');
+        // } else {
+        //   console.log('데이터 저장에 실패하였습니다.');
+        // }
       } catch (error) {
         console.error('오류 발생:', error);
       }

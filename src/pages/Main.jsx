@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import shortid from 'shortid';
 import styled from 'styled-components';
+import axios from 'axios';
 
 function Main() {
   const [shortId, setShortId] = useState(null);
@@ -25,17 +26,22 @@ function Main() {
   const sendDataToServer = async () => {
     try {
       const shortId = generateShortId();
-      const response = await fetch('http://localhost:4000/data', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          shortId: shortId
-        })
+      // const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/data`, {
+      //   method: 'POST',
+      //   headers: {
+      //     'Content-Type': 'application/json'
+      //   },
+      //   body: JSON.stringify({
+      //     shortId: shortId
+      //   })
+      // });
+      const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/data`, {
+        shortId: shortId
       });
 
-      if (response.ok) {
+      console.log('response', response);
+
+      if (response.status === 201) {
         console.log('데이터가 성공적으로 저장되었습니다.');
         // 페이지 이동 시에 navigate를 사용하여 shortId를 함께 전달
         navigate(`/quest?shortId=${shortId}`);
