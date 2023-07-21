@@ -1,18 +1,43 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import shortid from 'shortid';
 import styled from 'styled-components';
+import axios from 'axios';
 
 function Main() {
   const [shortId, setShortId] = useState(null);
   const navigate = useNavigate();
+  const [visitCount, setVisitCount] = useState(0);
+
+  useEffect(() => {
+    //비동기 함수 fetchDatat선언
+    async function fetchData() {
+      //axios를 이용해서 방문자 수 데이터 가져오기
+      try {
+        const res = await axios.get('http://localhost:4000/visit');
+        console.log('res!!', res.data);
+
+        //가져온 방문자 수 저장
+        const originalData = res.data.user;
+
+        //방문자 수 증가시켜서 업데이트
+        axios.patch('http://localhost:4000/visit', {
+          user: originalData + 1
+        });
+
+        setVisitCount(originalData + 1);
+      } catch (error) {}
+    }
+    //컴포넌트가 마운트 되면 함수 실행
+    fetchData();
+  }, []);
 
   const handleCopyClipBoard = (text) => {
     try {
       navigator.clipboard.writeText(text);
       alert('링크 복사 완료!');
     } catch (error) {
-      alert('다시 시도해주세요~');
+      alert('다시 시도해주세요!');
     }
   };
 
@@ -61,6 +86,9 @@ function Main() {
         <Link to={`/quest?shortId=${shortId}`}>
           <button onClick={sendDataToServer}>테스트하러 가기</button>
         </Link>
+
+        <div> 방문자 수 : {visitCount} </div>
+
         <div>▼OTHER LANGUAGES▼</div>
         <button onClick={() => handleCopyClipBoard('http://localhost:3000/')}>링크 복사</button>
       </ContentContainer>
