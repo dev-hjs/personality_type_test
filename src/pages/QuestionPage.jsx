@@ -158,15 +158,14 @@ const QuestionContainer = styled.div`
 `;
 
 const QuestionBox = styled.label`
-
   width: 500px;
   height: 90px;
   border: 4px solid #080070;
   padding: 10;
-  text-align:center
-	display : flex;
-	justify-content : center;
-	align-items : center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   display: flex;
   align-items: center;
   cursor: pointer;
