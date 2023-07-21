@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import styled from 'styled-components';
+
+import styled, { keyframes } from 'styled-components';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
-import axios from 'axios';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { __addSurvey } from '../redux/modules/survey';
@@ -35,6 +35,7 @@ export const useGoogleSheet = (sheetId) => {
 };
 
 function QuestionPage() {
+  const [isLoading, setIsLoading] = useState(true); // 로딩 상태를 저장하는 state 추가
   const [data] = useGoogleSheet('16447129');
   const [selectedCheckboxIndex, setSelectedCheckboxIndex] = useState(-1);
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -45,12 +46,28 @@ function QuestionPage() {
   const searchParams = new URLSearchParams(location.search);
   const shortId = searchParams.get('shortId');
 
+  const [clickedResultButton, setClickedResultButton] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false); // 로딩 상태를 저장하는 state 추가
+
   const survey = useSelector(function (state) {
     return state.survey.survey;
   });
   console.log('survey', survey);
 
   const dispatch = useDispatch();
+
+  const fetchGoogleSheetRows = async () => {
+    try {
+      const googleSheet = await getGoogleSheet();
+      const sheetsByIdElement = googleSheet.sheetsById['16447129'];
+      // 행들을 가져옵니다.
+      const rows = await sheetsByIdElement.getRows();
+      setIsLoading(false); // 데이터 로딩이 완료되면 로딩 상태를 false로 설정
+    } catch (error) {
+      console.error('데이터 로딩 오류:', error);
+      setIsLoading(false); // 에러가 발생해도 로딩 상태를 false로 설정
+    }
+  };
 
   const handleNextQuestion = async () => {
     if (selectedCheckboxIndex !== -1) {
@@ -82,9 +99,14 @@ function QuestionPage() {
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }
 
-      // "결과 보러가기" 버튼이 보이고, "다음" 버튼을 누른 경우에만 "/result" 페이지로 이동합니다.
+      // "결과 보러가기" 버튼이 보이고, "다음" 버튼을 누른 경우에만 로딩 상태를 설정하고 로딩 컴포넌트를 보여줍니다.
       if (showResultButton) {
-        navigate('/result');
+        setIsNavigating(true); // 로딩 상태 설정
+
+        // 2초 후에 "/result" 페이지로 이동합니다.
+        setTimeout(() => {
+          navigate('/result');
+        }, 2000);
       }
     }
   };
@@ -101,50 +123,86 @@ function QuestionPage() {
 
   const isPrevButtonVisible = currentQuestionIndex > 0;
 
+  useEffect(() => {
+    fetchGoogleSheetRows();
+  }, []);
+
   return (
     <>
-      {data.map(
-        (row, index) =>
-          // 현재 질문과 답변 리스트만 보여주도록 설정
-          index === currentQuestionIndex && (
-            <QuestionContainer key={index}>
-              <div> {row._rawData[0]}</div>
-              <div> {row._rawData[3]}</div>
+      {isLoading || isNavigating ? ( // 로딩 중 또는 결과 보러가기 버튼 클릭 후 로딩 상태라면 로딩 스피너를 표시합니다.
+        <LoadingContainer>
+          <LoadingCircle />
+        </LoadingContainer>
+      ) : (
+        // 데이터 로딩이 완료되면 기존 컴포넌트를 렌더링
+        <>
+          {data.map(
+            (row, index) =>
+              // 현재 질문과 답변 리스트만 보여주도록 설정
+              index === currentQuestionIndex && (
+                <QuestionContainer key={index}>
+                  <div> {row._rawData[0]}</div>
+                  <div> {row._rawData[3]}</div>
 
-              {row._rawData[1].split('\n').map((answer, answerIndex) => (
-                <QuestionBox key={answerIndex}>
-                  <CheckboxInput
-                    type="checkbox"
-                    checked={selectedCheckboxIndex === answerIndex}
-                    onChange={() => handleAnswerSelection(answerIndex)}
-                  />
-                  <span>{`${answerIndex + 1}: ${answer}`}</span>
-                </QuestionBox>
-              ))}
-            </QuestionContainer>
-          )
+                  {row._rawData[1].split('\n').map((answer, answerIndex) => (
+                    <QuestionBox key={answerIndex}>
+                      <CheckboxInput
+                        type="checkbox"
+                        checked={selectedCheckboxIndex === answerIndex}
+                        onChange={() => handleAnswerSelection(answerIndex)}
+                      />
+                      <span>{`${answerIndex + 1}: ${answer}`}</span>
+                    </QuestionBox>
+                  ))}
+                </QuestionContainer>
+              )
+          )}
+          <ButtonContainer>
+            {isPrevButtonVisible && (
+              <PrevButton onClick={handlePrevQuestion} disabled={currentQuestionIndex === 0}>
+                이전
+              </PrevButton>
+            )}
+            {showResultButton ? (
+              <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
+                결과 보러가기
+              </NextButton>
+            ) : (
+              <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
+                다음!
+              </NextButton>
+            )}
+          </ButtonContainer>
+        </>
       )}
-      <ButtonContainer>
-        {isPrevButtonVisible && (
-          <PrevButton onClick={handlePrevQuestion} disabled={currentQuestionIndex === 0}>
-            이전
-          </PrevButton>
-        )}
-        {showResultButton ? (
-          <NextButton onClick={() => navigate('/result')} disabled={selectedCheckboxIndex === -1}>
-            결과 보러가기
-          </NextButton>
-        ) : (
-          <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
-            다음!
-          </NextButton>
-        )}
-      </ButtonContainer>
     </>
   );
 }
 
 export default QuestionPage;
+
+const LoadingContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+`;
+
+const LoadingCircle = styled.div`
+  width: 40px;
+  height: 40px;
+  border: 4px solid rgba(0, 0, 0, 0.3);
+  border-radius: 50%;
+  border-top: 4px solid #b62d4b; /* 회전 시 보여질 색상을 지정합니다. */
+  animation: ${keyframes`
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  `} 1.5s infinite linear;
+`;
 
 const QuestionContainer = styled.div`
   display: flex;
@@ -158,15 +216,14 @@ const QuestionContainer = styled.div`
 `;
 
 const QuestionBox = styled.label`
-
   width: 500px;
   height: 90px;
   border: 4px solid #080070;
   padding: 10;
-  text-align:center
-	display : flex;
-	justify-content : center;
-	align-items : center;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   display: flex;
   align-items: center;
   cursor: pointer;
