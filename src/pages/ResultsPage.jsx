@@ -3,11 +3,39 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchVideos } from '../libs/youtube';
+import { useSelector } from 'react-redux';
+
+const credential = require('../libs/typetest1-0282f9b10c39.json');
+
+export const getGoogleSheet = async ({ googleSheetRows }) => {
+  const doc = new GoogleSpreadsheet('1zcM_t4HRDzfI2WR5l6nkW9fEEPMK13xskvxV6gbjez8');
+  await doc.useServiceAccountAuth(credential);
+  await doc.loadInfo();
+  return doc;
+};
+
+export const useGoogleSheet = (sheetId) => {
+  const [googleSheetRows, setGoogleSheetRows] = useState([]);
+
+  const fetchGoogleSheetRows = async () => {
+    const googleSheet = await getGoogleSheet();
+    const sheetsByIdElement = googleSheet.sheetsById[sheetId];
+    // 행들을 가져옵니다.
+    const rows = await sheetsByIdElement.getRows();
+    setGoogleSheetRows(rows);
+  };
+
+  useEffect(() => {
+    fetchGoogleSheetRows();
+  }, []);
+  return [googleSheetRows];
+};
 
 function ResultsPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [videos, setVideos] = useState([]);
   const location = useLocation();
+  const [data] = useGoogleSheet('1017683245');
 
   const handleSearch = async () => {
     const results = await searchVideos(searchTerm);
@@ -26,6 +54,14 @@ function ResultsPage() {
   useEffect(() => {
     console.log(location);
   }, [location]);
+
+  const reduxResults = useSelector(function (state) {
+    return state.survey.survey;
+  });
+
+  // 합산
+
+  // results => [{~~~}, {~~}, {~~}]
 
   // YouTube API를 사용하여 Elemental 영화 검색
   const searchElementalMovies = async () => {
@@ -62,8 +98,9 @@ function ResultsPage() {
         <STresultsImg src="water.png" />
         <br />
         <StResultsText>
-          엠버이군요!!
+          엠버이군요!
           <br />
+          <div>{row._rawData[0]}</div>
           당신과 닮은 캐릭터가 궁금하시다구요?!
           <br />
         </StResultsText>
