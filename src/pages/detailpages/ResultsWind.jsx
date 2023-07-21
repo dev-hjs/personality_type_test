@@ -25,13 +25,12 @@ function ResultsPage() {
         <div>X</div>
         <div>엘리멘탈 캐릭터로 보는 성격 테스트</div>
         <div>결과는??</div>
+        <div>게일 이군요!</div>
       </StResultsHeader>
       <div>
         <STresultsImg src="wind.png" />
         <br />
         <StResultsText>
-          게일 이군요!
-          <br />
           당신과 닮은 캐릭터가 궁금하시다구요?!
           <br />
           <div>
@@ -91,6 +90,6 @@ const StFlagimg = styled.div`
   display: block;
   margin: auto;
   text-align: center;
-  couser: pointer;
+  cursor: pointer;
   width: 40%;
 `;

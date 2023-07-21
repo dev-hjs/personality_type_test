@@ -73,7 +73,7 @@ const STresultsImg = styled.img`
   margin: auto;
   display: block;
 `;
-const StResultsText = styled.div`
+const stresultMessage = styled.div`
   text-align: center;
 `;
 const StResultsButton1 = styled.button`
@@ -91,6 +91,6 @@ const StFlagimg = styled.div`
   display: block;
   margin: auto;
   text-align: center;
-  couser: pointer;
+  cursor: pointer;
   width: 40%;
 `;

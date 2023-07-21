@@ -92,6 +92,6 @@ const StFlagimg = styled.div`
   display: block;
   margin: auto;
   text-align: center;
-  couser: pointer;
+  cursor: pointer;
   width: 40%;
 `;
