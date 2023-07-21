@@ -45,122 +45,12 @@ function QuestionPage() {
   const searchParams = new URLSearchParams(location.search);
   const shortId = searchParams.get('shortId');
 
-  // const survey = useSelector((state) => state.survey.survey);
   const survey = useSelector(function (state) {
     return state.survey.survey;
   });
   console.log('survey', survey);
 
   const dispatch = useDispatch();
-
-  // "additionalData"에서 가장 많은 값을 찾는 함수
-  const findMostFrequentAdditionalData = async () => {
-    // db.json에 입력된 값 전체를 가져와!
-    const dbResult = await axios.get(`${process.env.REACT_APP_SERVER_URL}/data`);
-
-    const filteredData = dbResult.data
-      .filter((result) => result.shortId === shortId && result.additionalData)
-      .map((item) => {
-        return item.additionalData;
-      });
-
-    let 물count = 0;
-    let 불count = 0;
-    let 흙count = 0;
-    let 바람count = 0;
-
-    for (let i = 0; i < filteredData.length; i++) {
-      const splitData = filteredData[i].split(', ');
-      console.log(splitData);
-      if (splitData.length > 1) {
-        for (const data of splitData) {
-          switch (data) {
-            case '물':
-              물count++;
-              break;
-            case '불':
-              불count++;
-              break;
-            case '흙':
-              흙count++;
-              break;
-            case '바람':
-              바람count++;
-              break;
-            default:
-              break;
-          }
-        }
-      } else {
-        switch (filteredData[i]) {
-          case '물':
-            물count++;
-            break;
-          case '불':
-            불count++;
-            break;
-          case '흙':
-            흙count++;
-            break;
-          case '바람':
-            바람count++;
-            break;
-          default:
-            break;
-        }
-      }
-    }
-    console.log(물count);
-    console.log(불count);
-    console.log(흙count);
-    console.log(바람count);
-
-    let mostFrequentData = '물';
-    let maxCount = 물count;
-
-    if (불count > maxCount) {
-      mostFrequentData = '불';
-      maxCount = 불count;
-    }
-    if (흙count > maxCount) {
-      mostFrequentData = '흙';
-      maxCount = 불count;
-    }
-    if (바람count > maxCount) {
-      mostFrequentData = '바람';
-      maxCount = 불count;
-    }
-
-    return mostFrequentData;
-  };
-
-  const handleShowResult = async () => {
-    // "additionalData"에서 가장 많은 값을 찾고 결과 페이지로 이동
-
-    const splitData = await findMostFrequentAdditionalData();
-    console.log(splitData);
-    switch (splitData) {
-      case '불':
-        navigate('/result'); // '/result_fire'는 "불"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
-        break;
-      case '물':
-        navigate('/result'); // '/result_water'는 "물"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
-        break;
-      case '흙':
-        navigate('/result'); // '/result_soil'는 "흙"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
-        break;
-      case '바람':
-        navigate('/result'); // '/result_wind'는 "바람"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
-        break;
-      default:
-        navigate('/result'); // 일반적인 결과 페이지의 경로입니다. 가장 많은 요소가 불, 물, 흙, 바람이 아닐 경우 이동할 경로를 정해주세요.
-        break;
-    }
-  };
-
-  const handleAnswerSelection = (answerIndex) => {
-    setSelectedCheckboxIndex(answerIndex);
-  };
 
   const handleNextQuestion = async () => {
     if (selectedCheckboxIndex !== -1) {
@@ -191,11 +81,19 @@ function QuestionPage() {
         setSelectedCheckboxIndex(-1);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }
+
+      // "결과 보러가기" 버튼이 보이고, "다음" 버튼을 누른 경우에만 "/result" 페이지로 이동합니다.
+      if (showResultButton) {
+        navigate('/result');
+      }
     }
   };
 
+  const handleAnswerSelection = (answerIndex) => {
+    setSelectedCheckboxIndex(answerIndex);
+  };
+
   const handlePrevQuestion = () => {
-    //가장 최근에 들어온 데이터중 shortid가 지금유저인 경우 삭제
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
     }
@@ -233,7 +131,7 @@ function QuestionPage() {
           </PrevButton>
         )}
         {showResultButton ? (
-          <NextButton onClick={handleShowResult} disabled={selectedCheckboxIndex === -1}>
+          <NextButton onClick={() => navigate('/result')} disabled={selectedCheckboxIndex === -1}>
             결과 보러가기
           </NextButton>
         ) : (
