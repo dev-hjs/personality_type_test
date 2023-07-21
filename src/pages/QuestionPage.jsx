@@ -44,6 +44,7 @@ function QuestionPage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shortId = searchParams.get('shortId');
+
   // const survey = useSelector((state) => state.survey.survey);
   const survey = useSelector(function (state) {
     return state.survey.survey;
@@ -166,6 +167,7 @@ function QuestionPage() {
       // 현재 질문의 답변 선택
       const selectedAnswer = data[currentQuestionIndex]._rawData[1].split('\n')[selectedCheckboxIndex];
       const additionalData = data[currentQuestionIndex]._rawData[2].split('\n')[selectedCheckboxIndex];
+
       console.log(selectedAnswer);
       console.log(additionalData);
       console.log(shortId);
@@ -209,6 +211,8 @@ function QuestionPage() {
           index === currentQuestionIndex && (
             <QuestionContainer key={index}>
               <div> {row._rawData[0]}</div>
+              <div> {row._rawData[3]}</div>
+
               {row._rawData[1].split('\n').map((answer, answerIndex) => (
                 <QuestionBox key={answerIndex}>
                   <CheckboxInput

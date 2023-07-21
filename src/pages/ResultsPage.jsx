@@ -59,6 +59,7 @@ function ResultsPage() {
   let resultMessage = '';
   let resultexplane = '';
   let photo = '';
+  let link = '';
 
   // "additionalData"에서 가장 많은 값에 따라 결과 메시지 설정
   const mostFrequentData = findMostFrequentAdditionalData();
@@ -69,6 +70,7 @@ function ResultsPage() {
       resultexplane =
         '흥을 빼면 0인 당신!! 주체할 수 없는 흥을 마구 발산시키는 분위기 메이커네요! 🥳\n집에서 쉬는 것보다 일하는게 좋아!! 바쁘고 즐거운 삶을 추구해 정적인 라이프와는 맞지 않군요. 3일동안 말 못 하는 것보단 3일 동안 떠드는게 차라리 나아요! 🤯\n술을 잘한다면 술자리는 최고! 술을 못한다면 물을 마셔서라도 술자리는 가야해요! 왜냐구요? 내 흥을 발산시켜야하거든요! 🍻\n밖에서 에너지를 다 쓰면 집에서는 가만히 있어야 해요. 충전해야 하거든요 어떻게 사람이 매일 매일 기분이 업 되어있을 수 있겠어요?  😏\n노는 것도 열심히, 일도 열심히 해요. 일을 못하는 자기 자신을 보는 게 너무 싫어요! 😔\n원하는게 분명해서 선택 장애는 없어요. 아주 단번에 고른답니다 ✔️';
       photo = 'fire.png';
+      link = '/result_fire';
       break;
     case '물':
       resultelemental = '웨이드 이군요!';
@@ -76,6 +78,7 @@ function ResultsPage() {
       resultexplane =
         '당신은 낯선 사람을 보면 도망가는 부끄럼쟁이군요! 🤧\n나에게만 쏠리는 많은 관심은 사절!! 과도한 관심보다 적당한 관심이 더 기분 좋게 만들어요 😑\n하지만 이런 나와 친해진다면 그 누구보다도 빙구같은 매력을 보여줄 수 있어요! 🤪\n내 사람은 내가 챙긴다! 라는 마인드가 있어 친해지기 어려워도 한번 친해지면 깊은 관계를 맺을 수 있어요. 👩‍❤️‍💋‍👩\n친구들에게 괴롭힘도 종종 당할 것 같네요! 그러나 그런 관심은 싫지 않다!! 몰이 당하는 줄 알면서도 당해주는 편이에요 😉\n귀찮아하는 것 같지만 그래도 할건 하는 스타일! 해야겠다고 마음 먹으면 누구보다 계획적이죠! 🕐\n계획을 세우고 행동하는 신중한 성격이지만 나보다는 단체를 중시해서 나의 계획이 틀어져도 괜찮아요! 🤝"';
       photo = 'water.png';
+      link = '/result_water';
       break;
     case '흙':
       resultelemental = '클로드 이군요!!';
@@ -83,6 +86,7 @@ function ResultsPage() {
       resultexplane =
         '생각보다 귀차니즘을 많이 타는 성격이에요! 할 필요성을 못느끼면 그 필요성이 생길 때까지 미루죠 😪\n그러나 하겠다고 마음만 먹으면 그 누구보다 열심히!!! 원하는 분야에서는 최고가 되고 싶어 해요. 💪\n항상 밝지만 내면에는 걱정이 많답니다. 은근 고민 거리도 많지만 누군가에게 피해주는 행동은 할 수 없어요..! 그렇기 때문에 착하다는 소리를 자주 들어요 😉\n즐겁게 노는 것을 좋아하는데 다수의 사람은 싫어요! 저랑 정말 친한 사람들이랑 놀고 싶어요 😚\n조용해보여도 사교성이 좋아요. 모든 사람들과 원만한 관계를 유지하는 사람이네요 👭\n혼자만의 시간이 필요하고 쉴 때는 혼자 내가 하고 싶은 걸 하면서 보내고 싶어요. 🏖️"';
       photo = 'soil.png';
+      link = '/result_soil';
       break;
     case '바람':
       resultelemental = '게일 이군요!';
@@ -90,6 +94,7 @@ function ResultsPage() {
       resultexplane =
         '자유 분방한 성격이라 누가 뭐라던 나의 길을 걸어요! 마이웨이 🤩\n호기심도 많고 항상 열린 마음으로 바라봐요. 세상 모든게 재밌고 좋아요! 🧐\n친구들과 어울리는 것도 좋아하고, 장난치는 것도 좋아해요 또 타인의 감정을 잘 이해하고 공감할 수 있는 최고의 친구랍니다~! 😘\n상상력이 풍부하고, 이상주의자 기질이 있어 혼자서 나만의 세계를 상상하는 걸 즐거워하군요? 이런 이유로 가끔은 4차원적이란 소리를 들을 때도 있어요 💭\n모든 일에 열정이 넘치고 하나보다는 여러 곳에 관심을 두는 성격이랍니다. 😝\n여러가지 생각이 많아서 창의적일 때가 있어요! 그러다보니 예술 분야에서 두각을 나타낼 때가 있어요 🎤"';
       photo = 'wind.png';
+      link = '/result_wind';
       break;
     default:
       resultMessage = '결과가 없습니다.';
@@ -113,7 +118,7 @@ function ResultsPage() {
         <Link to="/">
           <img src="ReStart.png" />
         </Link>
-        <img src="LinkCopy.png" onClick={() => handleLinkCopy(`http://localhost:3000${location.pathname}`)} />
+        <img src="LinkCopy.png" onClick={() => handleLinkCopy(`http://localhost:3000${link}`)} />
       </StResultsButton1>
       <StResultsText>▼OTHER LANGUAGES▼</StResultsText>
       <StFlagimg>
