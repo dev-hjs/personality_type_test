@@ -243,16 +243,32 @@ const QuestionContainer = styled.div`
   flex-direction: column;
   gap: 20px;
   margin-bottom: 20px;
+  margin-top: 40px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: 550;
 `;
 
 const QuestionBox = styled.label`
-  width: 700px;
-  height: 100px;
-  border: 1px solid #000;
+
+  width: 500px;
+  height: 90px;
+  border: 4px solid #080070;
+  padding: 10;
+  text-align:center
+	display : flex;
+	justify-content : center;
+	align-items : center;
   display: flex;
   align-items: center;
-  padding-left: 10px;
   cursor: pointer;
+  margin: auto;
+  font-size: 20px;
+  border-radius: 10px;
+  &:hover {
+    background-color: #e0e0e0;
+    color: black;
+  }
 `;
 
 const CheckboxInput = styled.input`
@@ -268,7 +284,7 @@ const ButtonContainer = styled.div`
 
 const PrevButton = styled.button`
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  background-color: ${({ disabled }) => (disabled ? '#ccc' : '#DC3545')};
+  background-color: ${({ disabled }) => (disabled ? '#ccc' : '#c6c306')};
   color: #fff;
   padding: 10px 20px;
   border: none;
@@ -277,7 +293,7 @@ const PrevButton = styled.button`
 
 const NextButton = styled.button`
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
-  background-color: ${({ disabled }) => (disabled ? '#ccc' : '#007BFF')};
+  background-color: ${({ disabled }) => (disabled ? '#ccc' : '#687aee')};
   color: #fff;
   padding: 10px 20px;
   border: none;
