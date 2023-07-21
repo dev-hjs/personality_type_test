@@ -100,7 +100,12 @@ function ResultsPage() {
         <StResultsText>
           엠버이군요!
           <br />
-          <div>{row._rawData[0]}</div>
+          <div>
+            {data.map((row) => {
+              return;
+              <div>{row._rawData[0]}</div>;
+            })}
+          </div>
           당신과 닮은 캐릭터가 궁금하시다구요?!
           <br />
         </StResultsText>
