@@ -44,6 +44,7 @@ function QuestionPage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shortId = searchParams.get('shortId');
+
   // const survey = useSelector((state) => state.survey.survey);
   const survey = useSelector(function (state) {
     return state.survey.survey;
@@ -140,16 +141,16 @@ function QuestionPage() {
     console.log(splitData);
     switch (splitData) {
       case '불':
-        navigate('/result_fire'); // '/result_fire'는 "불"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        navigate('/result'); // '/result_fire'는 "불"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
         break;
       case '물':
-        navigate('/result_water'); // '/result_water'는 "물"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        navigate('/result'); // '/result_water'는 "물"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
         break;
       case '흙':
-        navigate('/result_soil'); // '/result_soil'는 "흙"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        navigate('/result'); // '/result_soil'는 "흙"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
         break;
       case '바람':
-        navigate('/result_wind'); // '/result_wind'는 "바람"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
+        navigate('/result'); // '/result_wind'는 "바람"이 가장 많을 경우의 결과 페이지 경로입니다. 실제 경로에 맞게 수정하세요.
         break;
       default:
         navigate('/result'); // 일반적인 결과 페이지의 경로입니다. 가장 많은 요소가 불, 물, 흙, 바람이 아닐 경우 이동할 경로를 정해주세요.
@@ -166,37 +167,12 @@ function QuestionPage() {
       // 현재 질문의 답변 선택
       const selectedAnswer = data[currentQuestionIndex]._rawData[1].split('\n')[selectedCheckboxIndex];
       const additionalData = data[currentQuestionIndex]._rawData[2].split('\n')[selectedCheckboxIndex];
+
       console.log(selectedAnswer);
       console.log(additionalData);
       console.log(shortId);
 
-      // 데이터를 JSON 서버에 저장
       try {
-        // const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/data`, {
-        //   // 엔드포인트 변경
-        //   method: 'POST',
-        //   headers: {
-        //     'Content-Type': 'application/json'
-        //   },
-        //   body: JSON.stringify({ selectedAnswer, additionalData, shortId })
-        // });
-
-        // axios -> redux로 변경
-        // const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/data`, {
-        //   selectedAnswer,
-        //   additionalData,
-        //   shortId
-        // });
-        // dispatch({
-        //   type: '',
-        //   payload: '',
-        // });
-
-        // 직접 action 객체 만드는게 아니라, action creator를 사용
-        // __addSurvey() = {
-        //   type: '',
-        //   payload: '',
-        // }
         dispatch(
           __addSurvey({
             selectedAnswer,
@@ -204,13 +180,6 @@ function QuestionPage() {
             shortId
           })
         );
-
-        // if (response.ok) {
-        // if (response.status === 201) {
-        //   console.log('데이터가 성공적으로 저장되었습니다.');
-        // } else {
-        //   console.log('데이터 저장에 실패하였습니다.');
-        // }
       } catch (error) {
         console.error('오류 발생:', error);
       }
@@ -242,6 +211,8 @@ function QuestionPage() {
           index === currentQuestionIndex && (
             <QuestionContainer key={index}>
               <div> {row._rawData[0]}</div>
+              <div> {row._rawData[3]}</div>
+
               {row._rawData[1].split('\n').map((answer, answerIndex) => (
                 <QuestionBox key={answerIndex}>
                   <CheckboxInput
@@ -267,7 +238,7 @@ function QuestionPage() {
           </NextButton>
         ) : (
           <NextButton onClick={handleNextQuestion} disabled={selectedCheckboxIndex === -1}>
-            다음
+            다음!
           </NextButton>
         )}
       </ButtonContainer>
