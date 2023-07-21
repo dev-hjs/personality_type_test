@@ -1,11 +1,20 @@
 import React from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
+import { searchVideos } from '../libs/youtube';
 
 function ResultsPage() {
+  const [searchTerm, setSearchTerm] = useState('');
+  const [videos, setVideos] = useState([]);
+
+  const handleSearch = async () => {
+    const results = await searchVideos(searchTerm);
+    setVideos(results);
+  };
+
   const handleLinkCopy = async (text) => {
     try {
       await navigator.clipboard.writeText(text);
@@ -101,6 +110,29 @@ function ResultsPage() {
       break;
   }
 
+  // YouTube API를 사용하여 Elemental 영화 검색
+  const searchElementalMovies = async () => {
+    try {
+      const query = 'Elemental 영화'; // 검색할 쿼리
+      const results = await searchVideos(query);
+      return results;
+    } catch (error) {
+      console.error('Error searching Elemental movies:', error);
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    // 컴포넌트가 마운트될 때 Elemental 영화 검색하여 설정
+    searchElementalMovies().then((results) => setVideos(results));
+  }, []);
+
+  // 클릭한 비디오 재생
+  const handleVideoClick = (videoId) => {
+    const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+    window.open(videoUrl, '_blank');
+  };
+
   return (
     <>
       <StResultsHeader>
@@ -126,6 +158,23 @@ function ResultsPage() {
         <img src="CAflag.png" alt="이미지2" />
         <img src="JPflag.png" alt="이미지3" />
       </StFlagimg>
+      <div>
+        <h1>그냥 엘리멘탈 영화리스트</h1>
+        <input type="text" value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} />
+        <button onClick={handleSearch}>Search</button>
+        <ul>
+          {videos.map((video) => (
+            <li key={video.id.videoId}>
+              <h3>{video.snippet.title}</h3>
+              <Thumbnail
+                src={video.snippet.thumbnails.default.url}
+                alt="thumbnail"
+                onClick={() => handleVideoClick(video.id.videoId)}
+              />
+            </li>
+          ))}
+        </ul>
+      </div>
     </>
   );
 }
@@ -168,4 +217,7 @@ const StResultsButton1 = styled.button`
   display: block;
   background-color: #fff;
   border: #fff;
+`;
+const Thumbnail = styled.img`
+  cursor: pointer;
 `;
