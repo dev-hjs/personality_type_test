@@ -1,77 +1,11 @@
 {
   "data": [
     {
-      "shortId": "Y-h9fXlsY",
+      "shortId": "m6stNFw4c",
       "id": 1
     },
-    {
-      "shortId": "Cj9j_2WIg",
-      "id": 2
-    },
-    {
-      "selectedAnswer": "잔꾀를 부려 어떻게든 나간다! 😎",
-      "additionalData": "불",
-      "shortId": "Cj9j_2WIg",
-      "id": 3
-    },
-    {
-      "selectedAnswer": "혼자 카페에서 책을 읽는다 📖",
-      "additionalData": "흙",
-      "shortId": "Cj9j_2WIg",
-      "id": 4
-    },
-    {
-      "selectedAnswer": "몰이 하는 멤버 👻",
-      "additionalData": "불",
-      "shortId": "Cj9j_2WIg",
-      "id": 5
-    },
-    {
-      "selectedAnswer": "오늘은 그만 하고 내일 들을게! 🕐",
-      "additionalData": "물, 바람",
-      "shortId": "Cj9j_2WIg",
-      "id": 6
-    },
-    {
-      "selectedAnswer": "내가 뭘 잘못했나? 뭐지? 🤦‍♀️",
-      "additionalData": "물",
-      "shortId": "Cj9j_2WIg",
-      "id": 7
-    },
-    {
-      "selectedAnswer": "스터디 윗미 📝",
-      "additionalData": "물",
-      "shortId": "Cj9j_2WIg",
-      "id": 8
-    },
-    {
-      "selectedAnswer": "아무 생각이 없다 🙄‍",
-      "additionalData": "흙",
-      "shortId": "Cj9j_2WIg",
-      "id": 9
-    },
-    {
-      "selectedAnswer": "마음속으로만 좋아한다 😵‍",
-      "additionalData": "흙",
-      "shortId": "Cj9j_2WIg",
-      "id": 10
-    },
-    {
-      "selectedAnswer": "돌체라떼가 제일 맛있지 🥛",
-      "additionalData": "바람",
-      "shortId": "Cj9j_2WIg",
-      "id": 11
-    },
-    {
-      "selectedAnswer": "나는 와인 한잔이 좋아 🍷",
-      "additionalData": "바람",
-      "shortId": "Cj9j_2WIg",
-      "id": 12
-    }
-
   ],
   "visit": {
     "user": 2285
   }
 }
-
