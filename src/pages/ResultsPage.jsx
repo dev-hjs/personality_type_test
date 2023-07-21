@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { useLocation } from 'react-router-dom';
 import styled from 'styled-components';
 import { searchVideos } from '../libs/youtube';
+import { useSelector } from 'react-redux';
 
 function ResultsPage() {
   const [searchTerm, setSearchTerm] = useState('');
@@ -26,6 +27,14 @@ function ResultsPage() {
   useEffect(() => {
     console.log(location);
   }, [location]);
+
+  const reduxResults = useSelector(function (state) {
+    return state.survey.survey;
+  });
+
+  // 합산
+
+  // results => [{~~~}, {~~}, {~~}]
 
   // YouTube API를 사용하여 Elemental 영화 검색
   const searchElementalMovies = async () => {
