@@ -7,7 +7,7 @@ function StartPage() {
     <>
       <StartWrap>
         <Startimg>
-          <Link to="/main">
+          <Link to="/">
             <img src="startimage.png" />
           </Link>
         </Startimg>
@@ -19,7 +19,7 @@ function StartPage() {
 export default StartPage;
 
 const StartWrap = styled.div`
-  height: calc(100vh - 245px);
+  height: calc(100vh - 68px);
   background: black;
 `;
 
@@ -27,5 +27,9 @@ const Startimg = styled.div`
   display: block;
   margin: auto;
   height: 150px;
+  height: 150px;
   text-align: center;
+  a > img {
+    margin-top: 20px;
+  }
 `;

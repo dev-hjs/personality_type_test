@@ -16,9 +16,9 @@ function App() {
   // const [googleSheetRows] = useGoogleSheet(sheetId);
   return (
     <Routes>
-      <Route path="/main" element={<Main />} />
+      <Route path="/" element={<Main />} />
       <Route element={<Layout />}>
-        <Route path="/" element={<StartPage />} />
+        <Route path="/start" element={<StartPage />} />
         <Route path="/quest" element={<QuestionPage />} />
         <Route path="/result_fire" element={<ResultsFire />} />
         <Route path="/result_soil" element={<ResultsSoil />} />
