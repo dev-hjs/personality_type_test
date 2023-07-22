@@ -1,21 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-
 import styled, { keyframes } from 'styled-components';
 import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { __addSurvey } from '../redux/modules/survey';
-
 const credential = require('../libs/typetest1-0282f9b10c39.json');
-
 export const getGoogleSheet = async () => {
   const doc = new GoogleSpreadsheet('1zcM_t4HRDzfI2WR5l6nkW9fEEPMK13xskvxV6gbjez8');
   await doc.useServiceAccountAuth(credential);
   await doc.loadInfo();
   return doc;
 };
-
 export const useGoogleSheet = (sheetId) => {
   const [googleSheetRows, setGoogleSheetRows] = useState([]);
   const fetchGoogleSheetRows = async () => {
@@ -29,7 +25,6 @@ export const useGoogleSheet = (sheetId) => {
   }, []);
   return [googleSheetRows];
 };
-
 function QuestionPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [data] = useGoogleSheet('16447129');
@@ -41,18 +36,14 @@ function QuestionPage() {
   const location = useLocation();
   const searchParams = new URLSearchParams(location.search);
   const shortId = searchParams.get('shortId');
-
   const [progress, setProgress] = useState(0);
   const [clickedResultButton, setClickedResultButton] = useState(false);
   const [isNavigating, setIsNavigating] = useState(false);
-
   const survey = useSelector(function (state) {
     return state.survey.survey;
   });
   console.log('survey', survey);
-
   const dispatch = useDispatch();
-
   const fetchGoogleSheetRows = async () => {
     try {
       const googleSheet = await getGoogleSheet();
@@ -64,16 +55,13 @@ function QuestionPage() {
       setIsLoading(false);
     }
   };
-
   const handleNextQuestion = async () => {
     if (selectedCheckboxIndex !== -1) {
       const selectedAnswer = data[currentQuestionIndex]._rawData[1].split('\n')[selectedCheckboxIndex];
       const additionalData = data[currentQuestionIndex]._rawData[2].split('\n')[selectedCheckboxIndex];
-
       console.log(selectedAnswer);
       console.log(additionalData);
       console.log(shortId);
-
       try {
         dispatch(
           __addSurvey({
@@ -85,44 +73,35 @@ function QuestionPage() {
       } catch (error) {
         console.error('오류 발생:', error);
       }
-
       const totalQuestions = data.length;
       const progressPercentage = ((currentQuestionIndex + 1) / totalQuestions) * 100;
       setProgress(progressPercentage);
-
       if (isLastQuestion) {
         setShowResultButton(true);
       } else {
         setSelectedCheckboxIndex(-1);
         setCurrentQuestionIndex((prevIndex) => prevIndex + 1);
       }
-
       if (showResultButton) {
         setIsNavigating(true);
-
         setTimeout(() => {
           navigate('/result');
         }, 2000);
       }
     }
   };
-
   const handleAnswerSelection = (answerIndex) => {
     setSelectedCheckboxIndex(answerIndex);
   };
-
   const handlePrevQuestion = () => {
     if (currentQuestionIndex > 0) {
       setCurrentQuestionIndex((prevIndex) => prevIndex - 1);
     }
   };
-
   const isPrevButtonVisible = currentQuestionIndex > 0;
-
   useEffect(() => {
     fetchGoogleSheetRows();
   }, []);
-
   return (
     <>
       <QuestionBg>
@@ -140,7 +119,6 @@ function QuestionPage() {
                     <QuestionTitle> {row._rawData[0]}</QuestionTitle>
                     {/* <div> {row._rawData[3]}</div> */}
                     {/* <QuestionImg src="이미지.png" alt="이미지" /> */}
-
                     {/* 수정된 부분: 체크박스 대신 div 요소로 변경 */}
                     {row._rawData[1].split('\n').map((answer, answerIndex) => (
                       <QuestionBox
@@ -176,22 +154,19 @@ function QuestionPage() {
     </>
   );
 }
-
 export default QuestionPage;
-
 const LoadingContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
   height: 100vh;
 `;
-
 const LoadingCircle = styled.div`
   width: 40px;
   height: 40px;
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top: 4px solid #0e82e0;
+  border-top: 4px solid #0E82E0;
   animation: ${keyframes`
     0% {
       transform: rotate(0deg);
@@ -201,9 +176,8 @@ const LoadingCircle = styled.div`
     }
   `} 1.5s infinite linear;
 `;
-
 const QuestionBg = styled.div`
-  background: #ffffff;
+  background: #FFFFFF;
   height: calc(100vh - 68px);
 `;
 const QuestionContainer = styled.div`
@@ -216,14 +190,11 @@ const QuestionContainer = styled.div`
   font-size: 24px;
   font-weight: 550;
 `;
-
 const QuestionTitle = styled.h1``;
-
 const QuestionImg = styled.img`
   margin: 0 auto;
   width: 100px;
 `;
-
 const QuestionBox = styled.div`
   width: 500px;
   height: 90px;
@@ -236,24 +207,21 @@ const QuestionBox = styled.div`
   margin: auto;
   font-size: 20px;
   border-radius: 10px;
-  border: 4px solid ${({ checked }) => (checked ? '#0e82e0' : '#d6e8f9')};
+  border: 4px solid ${({ checked }) => (checked ? '#0E82E0' : '#D6E8F9')};
   &:hover {
-    background-color: #e0e0e0;
+    background-color: #E0E0E0;
     color: black;
   }
 `;
-
 const CheckboxInput = styled.input`
   margin-right: 10px;
 `;
-
 const ButtonContainer = styled.div`
   display: flex;
   gap: 10px;
   justify-content: center;
   margin-top: 20px;
 `;
-
 const PrevButton = styled.button`
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   background-color: ${({ disabled }) => (disabled ? '687aee' : '#C5DFF8')};
@@ -262,7 +230,6 @@ const PrevButton = styled.button`
   border: none;
   border-radius: 5px;
 `;
-
 const NextButton = styled.button`
   cursor: ${({ disabled }) => (disabled ? 'default' : 'pointer')};
   background-color: ${({ disabled }) => (disabled ? '#ccc' : '#7895CB')};
@@ -271,10 +238,9 @@ const NextButton = styled.button`
   border: none;
   border-radius: 5px;
 `;
-
 const LoadingBar = styled.div`
   width: ${(props) => props.progress}%;
   height: 5px;
-  background-color: #687aee;
+  background-color: #687AEE;
   transition: width 0.3s ease-in-out;
 `;
