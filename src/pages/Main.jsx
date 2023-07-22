@@ -87,21 +87,21 @@ function Main() {
       <StyledContentContainer>
         <Title> Character Personality Test</Title>
         <Subtitle>엘리멘탈 캐릭터로 보는 나의 성격은?</Subtitle>
+        <VisitCount>현재 총 {visitCount}명이 참여했어요!😆</VisitCount>
+
         <Link to={`/quest?shortId=${shortId}`}>
           <img src="testStart.png" onClick={sendDataToServer} />
         </Link>
-
-        <VisitCount>현재 총 {visitCount}명이 참여했어요!😆</VisitCount>
-
+        <br></br>
+        <CopyLinkIcon onClick={() => handleCopyClipBoard('http://localhost:3000/')}>
+          <img src="linkCopy.png" alt="LinkCopy" />
+        </CopyLinkIcon>
         <OtherLanguages>▼ OTHER LANGUAGES ▼</OtherLanguages>
         <StFlagimg>
           <Multilingual src="USflag.png" alt="이미지1" />
           <Multilingual src="CAflag.png" alt="이미지2" />
           <Multilingual src="JPflag.png" alt="이미지3" />
         </StFlagimg>
-        <CopyLinkIcon onClick={() => handleCopyClipBoard('http://localhost:3000/')}>
-          <img src="linkCopy.png" alt="LinkCopy" />
-        </CopyLinkIcon>
       </StyledContentContainer>
     </>
   );
@@ -151,18 +151,6 @@ const Subtitle = styled.div`
   margin-bottom: 10px;
 `;
 
-const Description = styled.div`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
-const StartButton = styled.button`
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-`;
-
 const VisitCount = styled.div`
   font-size: 15px;
   font-weight: bold;
@@ -181,6 +169,9 @@ const CopyLinkIcon = styled.button`
   font-weight: bold;
   background: none;
   border: none;
+  img {
+    width: 80%;
+  }
 `;
 const StFlagimg = styled.div`
   display: flex;
@@ -192,6 +183,6 @@ const StFlagimg = styled.div`
 `;
 
 const Multilingual = styled.img`
-  width: 50px;
+  width: 30px;
   margin: 0 4px;
 `;

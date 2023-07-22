@@ -16,8 +16,9 @@ function Layout() {
         <L.FootContents>
           Copyright 2023, All Rights Reserved <br /> 🐟사조참치🐟 용인시 수지구 풍덕천로 33 |<br /> 엘리멘탈 캐릭터로
           보는 나의 성격은?
-          <br /> 사조참치 Character Personality <br />
-          Test 발행 : 4조 | 편집 : 4조
+          <br /> 사조참치 Character Personality Test
+          <br />
+          발행 : 4조 | 편집 : 4조
         </L.FootContents>
       </L.Footer>
     </L.Wrap>
@@ -49,14 +50,15 @@ const L = {
   Footer: styled.footer`
     display: flex;
     justify-content: space-between;
-    padding: 24px;
+    padding: 10px;
     background-color: #d6e8f9;
     color: black;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     box-sizing: border-box;
   `,
+
   FootContents: styled.div`
     text-align: center;
     max-width: 600px;

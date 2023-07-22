@@ -1,11 +1,77 @@
 {
   "data": [
     {
-      "shortId": "ZxcmOnS_-",
+      "shortId": "ChoAkO_fS",
       "id": 1
+    },
+    {
+      "selectedAnswer": "잔꾀를 부려 어떻게든 나간다! 😎",
+      "additionalData": "불",
+      "shortId": "ChoAkO_fS",
+      "id": 2
+    },
+    {
+      "selectedAnswer": "친구랑 약속을 잡는다 😝",
+      "additionalData": "불",
+      "shortId": "ChoAkO_fS",
+      "id": 3
+    },
+    {
+      "selectedAnswer": "몰이 하는 친구 👻",
+      "additionalData": "불",
+      "shortId": "ChoAkO_fS",
+      "id": 4
+    },
+    {
+      "selectedAnswer": "좋은 생각이라면 들어 봐야지!! 🧐",
+      "additionalData": "불, 흙",
+      "shortId": "ChoAkO_fS",
+      "id": 5
+    },
+    {
+      "selectedAnswer": "뭐 때문에 부르신거지? 🤷‍♀️",
+      "additionalData": "불",
+      "shortId": "ChoAkO_fS",
+      "id": 6
+    },
+    {
+      "selectedAnswer": "노래 부르는 콘텐츠 🎤",
+      "additionalData": "불",
+      "shortId": "ChoAkO_fS",
+      "id": 7
+    },
+    {
+      "selectedAnswer": "방송이니까 웃으며 대답한다 😊",
+      "additionalData": "물",
+      "shortId": "ChoAkO_fS",
+      "id": 8
+    },
+    {
+      "selectedAnswer": "대기실에 찾아가서 말 건다 🥰",
+      "additionalData": "불",
+      "shortId": "ChoAkO_fS",
+      "id": 9
+    },
+    {
+      "selectedAnswer": "돌체라떼가 제일 맛있지 🥛",
+      "additionalData": "바람",
+      "shortId": "ChoAkO_fS",
+      "id": 10
+    },
+    {
+      "selectedAnswer": "술은 당근 소주지 🍶",
+      "additionalData": "물",
+      "shortId": "ChoAkO_fS",
+      "id": 11
+    },
+    {
+      "selectedAnswer": "술은 당근 소주지 🍶",
+      "additionalData": "물",
+      "shortId": "ChoAkO_fS",
+      "id": 12
     }
   ],
   "visit": {
-    "user": 2506
+    "user": 5424
   }
 }
