@@ -1,63 +1,11 @@
 {
-  "quests": [
+  "data": [
     {
-      "author": "홍길동",
-      "title": "리액트 공부",
-      "content": "리덕스도 해야겠지",
+      "shortId": "m6stNFw4c",
       "id": 1
-    },
-    {
-      "author": "고길동",
-      "title": "리덕스 공부",
-      "content": "리덕스 툴킷 사용",
-      "id": 2
-    },
-    {
-      "author": "글리치",
-      "title": "제이슨 배포",
-      "content": "된거야?",
-      "id": 3
     }
   ],
-  "posts": [
-    {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    },
-    {
-      "author": "",
-      "title": "",
-      "content": "",
-      "id": 2
-    },
-    {
-      "author": "",
-      "title": "",
-      "content": "",
-      "id": 3
-    },
-    {
-      "author": "",
-      "title": "",
-      "content": "",
-      "id": 4
-    },
-    {
-      "author": "",
-      "title": "",
-      "content": "",
-      "id": 5
-    }
-  ],
-  "comments": [
-    {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
-    }
-  ],
-  "profile": {
-    "name": "typicode"
+  "visit": {
+    "user": 2287
   }
 }
