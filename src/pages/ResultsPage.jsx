@@ -77,7 +77,7 @@ function ResultsPage() {
       resultelemental = '엠버 이군요!!';
       resultMessage = '아무도 내 흥을 막을 수 없어 🤪';
       resultexplane =
-        '흥을 빼면 0인 당신!! 주체할 수 없는 흥을 마구 발산시키는 분위기 메이커네요! 🥳\n집에서 쉬는 것보다 일하는게 좋아!! 바쁘고 즐거운 삶을 추구해 정적인 라이프와는 맞지 않군요. 3일동안 말 못 하는 것보단 3일 동안 떠드는게 차라리 나아요! 🤯\n술을 잘한다면 술자리는 최고! 술을 못한다면 물을 마셔서라도 술자리는 가야해요! 왜냐구요? 내 흥을 발산시켜야하거든요! 🍻\n밖에서 에너지를 다 쓰면 집에서는 가만히 있어야 해요. 충전해야 하거든요 어떻게 사람이 매일 매일 기분이 업 되어있을 수 있겠어요?  😏\n노는 것도 열심히, 일도 열심히 해요. 일을 못하는 자기 자신을 보는 게 너무 싫어요! 😔\n원하는게 분명해서 선택 장애는 없어요. 아주 단번에 고른답니다 ✔️';
+        '흥을 빼면 0인 당신!!\n 주체할 수 없는 흥을 마구 발산시키는 분위기 메이커네요! 🥳\n집에서 쉬는 것보다 일하는게 좋아!!\n 바쁘고 즐거운 삶을 추구해 정적인 라이프와는 맞지 않군요.\n 3일동안 말 못 하는 것보단 3일 동안 떠드는게 차라리 나아요! 🤯\n술을 잘한다면 술자리는 최고!\n 술을 못한다면 물을 마셔서라도 술자리는 가야해요!\n 왜냐구요? 내 흥을 발산시켜야하거든요! 🍻\n밖에서 에너지를 다 쓰면 집에서는 가만히 있어야 해요.\n 충전해야 하거든요 어떻게 사람이 매일 매일 기분이 업 되어있을 수 있겠어요?  😏\n노는 것도 열심히, 일도 열심히 해요.\n 일을 못하는 자기 자신을 보는 게 너무 싫어요! 😔\n원하는게 분명해서 선택 장애는 없어요. 아주 단번에 고른답니다 ✔️';
       photo = 'fire.png';
       link = '/result_fire';
       break;
@@ -93,7 +93,7 @@ function ResultsPage() {
       resultelemental = '클로드 이군요!!';
       resultMessage = '밝은 얼굴에 근심걱정 한방울 💧';
       resultexplane =
-        '생각보다 귀차니즘을 많이 타는 성격이에요! 할 필요성을 못느끼면 그 필요성이 생길 때까지 미루죠 😪\n그러나 하겠다고 마음만 먹으면 그 누구보다 열심히!!! 원하는 분야에서는 최고가 되고 싶어 해요. 💪\n항상 밝지만 내면에는 걱정이 많답니다. 은근 고민 거리도 많지만 누군가에게 피해주는 행동은 할 수 없어요..! 그렇기 때문에 착하다는 소리를 자주 들어요 😉\n즐겁게 노는 것을 좋아하는데 다수의 사람은 싫어요! 저랑 정말 친한 사람들이랑 놀고 싶어요 😚\n조용해보여도 사교성이 좋아요. 모든 사람들과 원만한 관계를 유지하는 사람이네요 👭\n혼자만의 시간이 필요하고 쉴 때는 혼자 내가 하고 싶은 걸 하면서 보내고 싶어요. 🏖️"';
+        '생각보다 귀차니즘을 많이 타는 성격이에요!\n 할 필요성을 못느끼면 그 필요성이 생길 때까지 미루죠 😪\n그러나 하겠다고 마음만 먹으면 그 누구보다 열심히!!!\n 원하는 분야에서는 최고가 되고 싶어 해요. 💪\n항상 밝지만 내면에는 걱정이 많답니다.\n 은근 고민 거리도 많지만 누군가에게 피해주는 행동은 할 수 없어요..!\n 그렇기 때문에 착하다는 소리를 자주 들어요 😉\n즐겁게 노는 것을 좋아하는데 다수의 사람은 싫어요!\n 저랑 정말 친한 사람들이랑 놀고 싶어요 😚\n조용해보여도 사교성이 좋아요.\n 모든 사람들과 원만한 관계를 유지하는 사람이네요 👭\n혼자만의 시간이 필요하고\n 쉴 때는 혼자 내가 하고 싶은 걸 하면서 보내고 싶어요. 🏖️"';
       photo = 'soil.png';
       link = '/result_soil';
       break;
@@ -138,8 +138,8 @@ function ResultsPage() {
       <StResultsHeader>
         <div>🐟사조참치🐟</div>
         <div>X</div>
-        <div>엘리멘탈 캐릭터로 보는 성격 테스트</div>
-        <div>결과는??</div>
+        <div>엘리멘탈 캐릭터로 보는 성격 테스트 결과는??</div>
+
         <StResultsText>{resultelemental}</StResultsText>
         <STresultsImg src={photo} alt="이미지" />
       </StResultsHeader>
@@ -199,19 +199,33 @@ const STresultsImg = styled.img`
   margin: auto;
   display: block;
 `;
+const StResultMessage = styled.div`
+  margin: 20px auto;
+  text-align: center;
+  font-size: 24px; /* 텍스트 크기를 원하는 크기로 조정 */
+  line-height: 1.5;
+  max-width: 600px;
+  font-weight: bold; /* 텍스트 강조를 위해 폰트 굵기를 추가 */
+`;
+
 const StResultsText = styled.div`
   text-align: center;
-`;
-const StResultMessage = styled.div`
-  margin: 0 auto;
-  text-align: center;
+  font-size: 28px; /* 텍스트 크기를 원하는 크기로 조정 */
+  font-weight: bold; /* 텍스트 강조를 위해 폰트 굵기를 추가 */
 `;
 
 const StResultExplane = styled.div`
   margin: 0 auto;
-  text-align: center;
-  white-space: pre-line;
+  text-align: left;
+  white-space: pre-line; /* 줄바꿈을 활성화합니다. */
+  max-width: 600px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  background-color: #f7f7f7;
+  line-height: 1.5;
 `;
+
 const StResultsButton1 = styled.button`
   margin: auto;
   display: block;
