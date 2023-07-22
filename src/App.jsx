@@ -1,5 +1,6 @@
 import './App.css';
 import { Route, Routes, Link } from 'react-router-dom';
+import StartPage from './pages/StartPage';
 import Main from './pages/Main';
 import QuestionPage from './pages/QuestionPage';
 import ResultsPage from './pages/ResultsPage';
@@ -15,8 +16,9 @@ function App() {
   // const [googleSheetRows] = useGoogleSheet(sheetId);
   return (
     <Routes>
+      <Route path="/" element={<Main />} />
       <Route element={<Layout />}>
-        <Route path="/" element={<Main />} />
+        <Route path="/start" element={<StartPage />} />
         <Route path="/quest" element={<QuestionPage />} />
         <Route path="/result_fire" element={<ResultsFire />} />
         <Route path="/result_soil" element={<ResultsSoil />} />

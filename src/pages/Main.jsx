@@ -10,7 +10,7 @@ function Main() {
   const [visitCount, setVisitCount] = useState(0);
 
   useEffect(() => {
-    //비동기 함수 fetchDatat선언
+    //비동기 함수 fetchData 선언
     async function fetchData() {
       //axios를 이용해서 방문자 수 데이터 가져오기
       try {
@@ -84,19 +84,25 @@ function Main() {
           <source src="/Steal The Show From Elemental_1080p.mp4" type="video/mp4" />
         </Video>
       </VideoBackground>
-      <ContentContainer>
-        <div>엘리멘탈 캐릭터로 보는 나의 성격은?</div>
-        <div>character personality test</div>
-        <div>캐릭터로 보는 나의 성격은?</div>
+      <StyledContentContainer>
+        <Title> Character Personality Test</Title>
+        <Subtitle>엘리멘탈 캐릭터로 보는 나의 성격은?</Subtitle>
         <Link to={`/quest?shortId=${shortId}`}>
-          <button onClick={sendDataToServer}>테스트하러 가기</button>
+          <img src="testStart.png" onClick={sendDataToServer} />
         </Link>
 
-        <div> 방문자 수 : {visitCount} </div>
+        <VisitCount>현재 총 {visitCount}명이 참여했어요!😆</VisitCount>
 
-        <div>▼OTHER LANGUAGES▼</div>
-        <img src="LinkCopy.png" alt="LinkCopy" onClick={() => handleCopyClipBoard('http://localhost:3000/')} />
-      </ContentContainer>
+        <OtherLanguages>▼ OTHER LANGUAGES ▼</OtherLanguages>
+        <StFlagimg>
+          <Multilingual src="USflag.png" alt="이미지1" />
+          <Multilingual src="CAflag.png" alt="이미지2" />
+          <Multilingual src="JPflag.png" alt="이미지3" />
+        </StFlagimg>
+        <CopyLinkIcon onClick={() => handleCopyClipBoard('http://localhost:3000/')}>
+          <img src="linkCopy.png" alt="LinkCopy" />
+        </CopyLinkIcon>
+      </StyledContentContainer>
     </>
   );
 }
@@ -118,19 +124,74 @@ const Video = styled.video`
   height: 100%;
 `;
 
-const ContentContainer = styled.div`
+const StyledContentContainer = styled.div`
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1;
-  padding: 20px;
+  padding: 30px 20px 20px;
   color: white;
   text-align: center;
-  background: black;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5);
   border: 2px solid;
   border-radius: 10px;
-  width: 300px;
+  width: 500px;
 `;
-//
+
+const Title = styled.div`
+  font-size: 30px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const Subtitle = styled.div`
+  font-size: 22px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const Description = styled.div`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const StartButton = styled.button`
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const VisitCount = styled.div`
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const OtherLanguages = styled.div`
+  font-size: 15px;
+  font-weight: bold;
+  margin-bottom: 10px;
+`;
+
+const CopyLinkIcon = styled.button`
+  margin-top: 15px;
+  font-size: 24px;
+  font-weight: bold;
+  background: none;
+  border: none;
+`;
+const StFlagimg = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  width: 10%;
+  margin: 0 auto;
+`;
+
+const Multilingual = styled.img`
+  width: 50px;
+  margin: 0 4px;
+`;
