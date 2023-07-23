@@ -69,9 +69,13 @@
       "additionalData": "물",
       "shortId": "ChoAkO_fS",
       "id": 12
+    },
+    {
+      "shortId": "iV4efXhsj",
+      "id": 13
     }
   ],
   "visit": {
-    "user": 2506
+    "user": 2514
   }
 }
