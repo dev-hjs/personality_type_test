@@ -19,7 +19,7 @@ function StartPage() {
 export default StartPage;
 
 const StartWrap = styled.div`
-  height: calc(100vh - 245px);
+  height: calc(100vh - 224px);
   background: black;
 `;
 
