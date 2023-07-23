@@ -13,7 +13,7 @@ function Layout() {
       <Outlet />
       <L.Footer>
         <L.FootContents>
-          Copyright 2023, All Rights Reserved <br /> ○:물고기:사조참치:물고기: 용인시 수지구 풍덕천로 33○
+          Copyright 2023, All Rights Reserved <br /> 🐟사조참치🐟 용인시 수지구 풍덕천로 33○
           <br />
           Character Personality Test
           <br />
