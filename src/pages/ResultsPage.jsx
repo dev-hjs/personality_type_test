@@ -285,6 +285,7 @@ const VideoTitle = styled.h3`
 `;
 
 const Thumbnail = styled.img`
+  width: 100%;
   height: auto;
 
   cursor: pointer;
