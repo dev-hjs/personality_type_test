@@ -50,15 +50,6 @@ function Main() {
   const sendDataToServer = async () => {
     try {
       const shortId = generateShortId();
-      // const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/data`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     shortId: shortId
-      //   })
-      // });
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/data`, {
         shortId: shortId
       });

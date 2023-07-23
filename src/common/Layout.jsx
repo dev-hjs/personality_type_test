@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import styled from 'styled-components';
-
 function Layout() {
   return (
     <L.Wrap>
@@ -14,18 +13,17 @@ function Layout() {
       <Outlet />
       <L.Footer>
         <L.FootContents>
-          Copyright 2023, All Rights Reserved <br /> 🐟사조참치🐟 용인시 수지구 풍덕천로 33 |<br /> 엘리멘탈 캐릭터로
-          보는 나의 성격은?
-          <br /> 사조참치 Character Personality <br />
-          Test 발행 : 4조 | 편집 : 4조
+          Copyright 2023, All Rights Reserved <br /> ○:물고기:사조참치:물고기: 용인시 수지구 풍덕천로 33○
+          <br />
+          Character Personality Test
+          <br />
+          발행/편집:4조
         </L.FootContents>
       </L.Footer>
     </L.Wrap>
   );
 }
-
 export default Layout;
-
 const L = {
   Wrap: styled.div`
     // min-height: 100vh;
@@ -38,7 +36,7 @@ const L = {
     display: flex;
     justify-content: space-between;
     padding: 12px;
-    background-color: #d6e8f9;
+    background-color: #D6E8F9;
     color: white;
     a {
       color: white;
@@ -49,8 +47,8 @@ const L = {
   Footer: styled.footer`
     display: flex;
     justify-content: space-between;
-    padding: 24px;
-    background-color: #d6e8f9;
+    padding: 10px;
+    background-color: #D6E8F9;
     color: black;
     position: relative;
     bottom: 0;
