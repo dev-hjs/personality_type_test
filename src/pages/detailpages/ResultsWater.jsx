@@ -65,7 +65,7 @@ function ResultsPage() {
         <Link to="/">
           <img src="ReStart.png" />
         </Link>
-        <img src="LinkCopy.png" onClick={() => handleLinkCopy(`http://localhost:3000${location.pathname}`)} />
+        <img src="LinkCopy.png" onClick={() => handleLinkCopy(`https://personality-type-test-q1.vercel.app`)} />
       </StResultsButton1>
       <br />
       <StResultsText>▼OTHER LANGUAGES▼</StResultsText>

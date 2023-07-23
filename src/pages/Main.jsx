@@ -14,14 +14,14 @@ function Main() {
     async function fetchData() {
       //axios를 이용해서 방문자 수 데이터 가져오기
       try {
-        const res = await axios.get('http://localhost:4000/visit');
+        const res = await axios.get(`${process.env.REACT_APP_SERVER_URL}/visit`);
         console.log('res!!', res.data);
 
         //가져온 방문자 수 저장
         const originalData = res.data.user;
 
         //방문자 수 증가시켜서 업데이트
-        axios.patch('http://localhost:4000/visit', {
+        axios.patch(`${process.env.REACT_APP_SERVER_URL}/visit`, {
           user: originalData + 1
         });
 
@@ -50,15 +50,7 @@ function Main() {
   const sendDataToServer = async () => {
     try {
       const shortId = generateShortId();
-      // const response = await fetch(`${process.env.REACT_APP_SERVER_URL}/data`, {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   },
-      //   body: JSON.stringify({
-      //     shortId: shortId
-      //   })
-      // });
+
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/data`, {
         shortId: shortId
       });
@@ -94,7 +86,7 @@ function Main() {
         </Link>
         <br></br>
         <CopyLinkIcon onClick={() => handleCopyClipBoard('http://localhost:3000/')}>
-          <img src="linkCopy.png" alt="LinkCopy" />
+          <img src="LinkCopy.png" alt="LinkCopy" />
         </CopyLinkIcon>
         <OtherLanguages>▼ OTHER LANGUAGES ▼</OtherLanguages>
         <StFlagimg>
