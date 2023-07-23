@@ -134,3 +134,5 @@ const StResultMessage = styled.div`
   max-width: 600px;
   font-weight: bold; /* 텍스트 강조를 위해 폰트 굵기를 추가 */
 `;
+
+//
