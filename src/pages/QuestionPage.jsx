@@ -166,7 +166,7 @@ const LoadingCircle = styled.div`
   height: 40px;
   border: 4px solid rgba(0, 0, 0, 0.1);
   border-radius: 50%;
-  border-top: 4px solid #0E82E0;
+  border-top: 4px solid #0e82e0;
   animation: ${keyframes`
     0% {
       transform: rotate(0deg);
@@ -177,7 +177,7 @@ const LoadingCircle = styled.div`
   `} 1.5s infinite linear;
 `;
 const QuestionBg = styled.div`
-  background: #FFFFFF;
+  background: #ffffff;
   height: calc(100vh - 68px);
 `;
 const QuestionContainer = styled.div`
@@ -209,7 +209,7 @@ const QuestionBox = styled.div`
   border-radius: 10px;
   border: 4px solid ${({ checked }) => (checked ? '#0E82E0' : '#D6E8F9')};
   &:hover {
-    background-color: #E0E0E0;
+    background-color: #e0e0e0;
     color: black;
   }
 `;
@@ -241,6 +241,6 @@ const NextButton = styled.button`
 const LoadingBar = styled.div`
   width: ${(props) => props.progress}%;
   height: 5px;
-  background-color: #687AEE;
+  background-color: #687aee;
   transition: width 0.3s ease-in-out;
 `;

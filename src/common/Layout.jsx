@@ -52,7 +52,7 @@ const L = {
     padding: 24px;
     background-color: #d6e8f9;
     color: black;
-    position: absolute;
+    position: relative;
     bottom: 0;
     width: 100%;
     box-sizing: border-box;
