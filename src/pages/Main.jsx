@@ -50,7 +50,6 @@ function Main() {
   const sendDataToServer = async () => {
     try {
       const shortId = generateShortId();
-
       const response = await axios.post(`${process.env.REACT_APP_SERVER_URL}/data`, {
         shortId: shortId
       });
@@ -85,7 +84,7 @@ function Main() {
           <img src="testStart.png" onClick={sendDataToServer} />
         </Link>
         <br></br>
-        <CopyLinkIcon onClick={() => handleCopyClipBoard('http://localhost:3000/')}>
+        <CopyLinkIcon onClick={() => handleCopyClipBoard('https://personality-type-test-q1.vercel.app/')}>
           <img src="LinkCopy.png" alt="LinkCopy" />
         </CopyLinkIcon>
         <OtherLanguages>▼ OTHER LANGUAGES ▼</OtherLanguages>
