@@ -7,10 +7,22 @@
 ### 배포주소
 - https://personality-type-test.vercel.app
 
+![제목 없는 다이어그램 drawio](https://github.com/hyungjungson/personality_type_test/assets/133640361/3d909ca6-7611-41ae-a256-20b6ca87778f)
+
 🥊 개발기간
 (23.07.17~23.07.23)
+## 🌹: Stacks
+### Environment
 
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
+### Development
+
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
+
+<br/><br/>
 ## 화면구성
 
 ### *시작페이지 
