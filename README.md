@@ -7,6 +7,9 @@
 ### 배포주소
 - https://personality-type-test.vercel.app
 
+![제목 없는 다이어그램 drawio](https://github.com/hyungjungson/personality_type_test/assets/133640361/0be0cabc-78a8-475f-bac0-c07d5f0c8b97)
+
+
 🥊 개발기간
 (23.07.17~23.07.23)
 
