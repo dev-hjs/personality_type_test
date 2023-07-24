@@ -17,7 +17,7 @@ function ResultsPage() {
 
   const location = useLocation();
   useEffect(() => {
-    console.log(location);
+    // console.log(location);
   }, [location]);
   return (
     <>
@@ -30,7 +30,7 @@ function ResultsPage() {
         <StResultsText>"엠버"</StResultsText>
       </StResultsHeader>
       <div>
-        <STresultsImg src="fire.png" />
+        <STresultsImg src="fire.png" alt="불이미지" />
         <br />
 
         <StResultExplane>
@@ -68,16 +68,20 @@ function ResultsPage() {
       </div>
       <StResultsButton1>
         <Link to="/">
-          <img src="ReStart.png" />
+          <img src="ReStart.png" alt="다시하기" />
         </Link>
-        <img src="LinkCopy.png" onClick={() => handleLinkCopy(`https://personality-type-test-q1.vercel.app`)} />
+        <img
+          src="LinkCopy.png"
+          onClick={() => handleLinkCopy(`https://personality-type-test.vercel.app`)}
+          alt="링크복사"
+        />
       </StResultsButton1>
       <br />
       <StResultsText>▼OTHER LANGUAGES▼</StResultsText>
       <StFlagimg>
-        <img src="USflag.png" alt="이미지1" />
-        <img src="CAflag.png" alt="이미지2" />
-        <img src="JPflag.png" alt="이미지3" />
+        <img src="USflag.png" alt="영문" />
+        <img src="CAflag.png" alt="중문" />
+        <img src="JPflag.png" alt="일문" />
       </StFlagimg>
     </>
   );

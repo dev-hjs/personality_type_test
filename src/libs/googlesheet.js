@@ -14,13 +14,6 @@ export const getGoogleSheet = async ({ googleSheetRows }) => {
 export const useGoogleSheet = (sheetId) => {
   const [googleSheetRows, setGoogleSheetRows] = useState([]);
 
-  // const fetchGoogleSheetRows = async () => {
-  //   const googleSheet = await getGoogleSheet();
-  //   const sheet = googleSheet.sheetsById[sheetId];
-  //   const rows = await sheet.getRows();
-  //   setGoogleSheetRows(rows);
-  // };
-
   const fetchGoogleSheetRows = async () => {
     const googleSheet = await getGoogleSheet();
     const sheetsByIdElement = googleSheet.sheetsById[sheetId];

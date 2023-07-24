@@ -1,71 +1,64 @@
-# Getting Started with Create React App
+# 프로젝트 소개
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## Elemental Character Personality Test !
+- 영화 '엘리멘탈'을 주제로 한 성격 유형 검사로 가볍게 즐기면서 영화에 대한 흥미와 관심을 올릴 수 있습니다. JSON을 활용하여 데이터를 저장하였습니다.
 
-In the project directory, you can run:
+### 배포주소
+- https://personality-type-test.vercel.app
 
-### `yarn start`
+![제목 없는 다이어그램 drawio](https://github.com/hyungjungson/personality_type_test/assets/133640361/3d909ca6-7611-41ae-a256-20b6ca87778f)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+🥊 개발기간
+(23.07.17~23.07.23)
+## 🌹: Stacks
+### Environment
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-007ACC?style=for-the-badge&logo=Visual%20Studio%20Code&logoColor=white)
+![Git](https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white)
+![Github](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white)
 
-### `yarn test`
+### Development
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<img src="https://img.shields.io/badge/React-61DAFB?style=for-the-badge&logo=React&logoColor=white"/> <img src="https://img.shields.io/badge/vercel-000000?style=for-the-badge&logo=vercel&logoColor=white"/>
 
-### `yarn build`
+<br/><br/>
+## 화면구성
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### *시작페이지 
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/8bc3f24e-e732-4a5d-a2b4-224a5095d6cd)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### *메인페이지
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/06f0082c-767a-4c0a-bef8-e7e6c88ec04d)
 
-### `yarn eject`
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### *질문페이지
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/f50521ab-1e96-490d-953d-3bf69be91dd7)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### *결과페이지
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/dd033978-ed54-41f7-a4f5-e22347b7c898)
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/72587772-0641-47db-add7-27e61dc37a66)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 주요기능
+---
+## 시작페이지
+* LINK기능을 넣어 이미지 클릭시 메인페이지로 넘어가도록 구성하였습니다.
+* 헤더부분에 있는 LOGO를 클릭하면 어느 페이지에서든 시작페이지로 올 수 있습니다.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## 메인페이지
+* BACKGOUND에 영상을 넣어 시각적인 효과를 극대화하였습니다.
+* JSON을 이용하여 테스트에 참여한 인원을 볼 수 있도록 구현하였습니다
+* LINK 기능을 넣어 '테스트 하러 가기' 클릭시 질문 페이지로 넘어가도록 구성하였습니다.
+  'LINK COPY'를 클릭시 Alert 창으로 링크가 복사 되었음을 알리고, 링크 복사가 가능합니다.
 
-### Code Splitting
+## 질문페이지
+*구글 스프레드시트와 JSON을 이용하여 질문 페이지를 구성하였습니다.
+*총 10가지 질문을 통해 알맞는 ID값이 결과값으로 나올 수 있게 구성하였습니다.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `yarn build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
-
-# personality_type_test
+## 결과페이지
+* 결과에 맞는 캐릭터 성격에 대한 간단 소개가 나와있습니다.
+* '다시하기'를 클릭시 첫 화면으로 돌아가며 '링크복사'는 메인페이지와 동일하게 작동합니다.
+* 하단부분에 유튜브API를 이용하여 '엘리멘탈'관련 영상들이 나올 수 있도록 하였고, 검색 기능을 통해 다른 영상도 찾아 볼 수 있습니다.
