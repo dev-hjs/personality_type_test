@@ -81,17 +81,17 @@ function Main() {
         <VisitCount>현재 총 {visitCount}명이 참여했어요!😆</VisitCount>
 
         <Link to={`/quest?shortId=${shortId}`}>
-          <img src="testStart.png" onClick={sendDataToServer} />
+          <img src="testStart.png" onClick={sendDataToServer} alt="테스트하러가기" />
         </Link>
         <br></br>
-        <CopyLinkIcon onClick={() => handleCopyClipBoard('https://personality-type-test-q1.vercel.app/')}>
-          <img src="LinkCopy.png" alt="LinkCopy" />
+        <CopyLinkIcon onClick={() => handleCopyClipBoard('https://personality-type-test.vercel.app/')}>
+          <img src="LinkCopy.png" alt="링크복사" />
         </CopyLinkIcon>
         <OtherLanguages>▼ OTHER LANGUAGES ▼</OtherLanguages>
         <StFlagimg>
-          <Multilingual src="USflag.png" alt="이미지1" />
-          <Multilingual src="CAflag.png" alt="이미지2" />
-          <Multilingual src="JPflag.png" alt="이미지3" />
+          <Multilingual src="USflag.png" alt="영문" />
+          <Multilingual src="CAflag.png" alt="중문" />
+          <Multilingual src="JPflag.png" alt="일문" />
         </StFlagimg>
       </StyledContentContainer>
     </>

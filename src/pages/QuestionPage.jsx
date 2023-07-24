@@ -59,9 +59,9 @@ function QuestionPage() {
     if (selectedCheckboxIndex !== -1) {
       const selectedAnswer = data[currentQuestionIndex]._rawData[1].split('\n')[selectedCheckboxIndex];
       const additionalData = data[currentQuestionIndex]._rawData[2].split('\n')[selectedCheckboxIndex];
-      console.log(selectedAnswer);
-      console.log(additionalData);
-      console.log(shortId);
+      // console.log(selectedAnswer);
+      // console.log(additionalData);
+      // console.log(shortId);
       try {
         dispatch(
           __addSurvey({
