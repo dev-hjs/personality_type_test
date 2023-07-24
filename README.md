@@ -38,8 +38,9 @@
 
 
 ### *결과페이지
-![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/dd033978-ed54-41f7-a4f5-e22347b7c898)
-![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/72587772-0641-47db-add7-27e61dc37a66)
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/b009dd78-58f5-463f-b235-08b19ac42164)
+![image](https://github.com/hyungjungson/personality_type_test/assets/133503493/a8cfb587-f8cc-4621-9223-d8f3b6ac5ba4)
+
 
 
 ## 주요기능
