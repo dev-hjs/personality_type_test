@@ -8,7 +8,7 @@ function StartPage() {
       <StartWrap>
         <Startimg>
           <Link to="/main">
-            <img src="startimage.png" />
+            <VisualImg src="startimage.png" alt="elemental test 이미지" />
           </Link>
         </Startimg>
       </StartWrap>
@@ -28,4 +28,9 @@ const Startimg = styled.div`
   margin: auto;
   height: 150px;
   text-align: center;
+`;
+
+const VisualImg = styled.img`
+  overflow: hidden;
+  height: calc(100vh - 224px);
 `;
